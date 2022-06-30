@@ -12,6 +12,7 @@ def main():
 if __name__ == '__main__':
     main()
 
+
 parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
 parser.add_argument("-f", "--format",
 help = "set format of output")
