@@ -4,7 +4,8 @@ from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference
 
 
 def generate_diff():
-    parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
+    parser = argparse.ArgumentParser(
+        description='Compares two configuration files and shows a difference.')
     parser.add_argument("-f", "--format",
                         help="set format of output")
     parser.add_argument('first_file', type=str)
