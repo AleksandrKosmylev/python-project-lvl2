@@ -27,3 +27,5 @@ def get_dicts_difference(dict_1, dict_2):
         else:
             result['+' + i] = dict_2[i]
     return yaml.dump(result)
+
+# print(get_dict_from_file('/home/aleksandr/hexlet/projects/python-project-lvl2/gendiff/scripts/fixtures/file1.json'))
