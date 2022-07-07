@@ -1,4 +1,4 @@
-from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference
+from get_diffs import get_dict_from_file, get_dicts_difference
 
 
 control_result = {
