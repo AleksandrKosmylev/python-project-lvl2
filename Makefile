@@ -16,9 +16,15 @@ gendiff:
 lint:
 	poetry run flake8 gendiff
 
+pytest_lint:
+	poetry run pytest
 full:
 	poetry install
 	poetry build
 	poetry publish --dry-run
 	python3 -m pip install --user dist/*.whl --force-reinstall
+
+
+
+
 
