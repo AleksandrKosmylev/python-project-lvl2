@@ -14,4 +14,4 @@ jobs:
           make full
       - name: Run linter
         run: |
-          make lint
+          poetry run pytest test_gendiff.py
