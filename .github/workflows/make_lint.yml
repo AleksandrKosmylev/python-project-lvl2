@@ -1,4 +1,4 @@
-ame: my_linter
+name: my_linter
 on: push
 jobs:
   my-job:
@@ -8,7 +8,11 @@ jobs:
       - name: Set up python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10
+          python-version: 3.10.4
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          make install
       - name: Run linter and pytest
         run: |
           make lint
