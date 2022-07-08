@@ -11,8 +11,7 @@ jobs:
           python-version: 3.10.4
       - name: Install dependencies
         run: |
-          pip install poetry
-          make install
+          make full
       - name: Run linter
         run: |
           make lint
