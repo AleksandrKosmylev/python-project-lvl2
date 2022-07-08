@@ -18,7 +18,7 @@ jobs:
         run: |
           pip install pytest
           pip install pytest-cov
-          poetry install
-          poetry build
-          poetry run pytest
+          pip poetry install
+          pip poetry build
+          pip poetry run pytest
           
