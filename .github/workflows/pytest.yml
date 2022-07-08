@@ -18,7 +18,4 @@ jobs:
         run: |
           pip install pytest
           pip install pytest-cov
-          pip poetry install
-          pip poetry build
-          pip poetry run pytest
-          
+          pytest tests/test_gendiff.py --doctest-modules --junitxml=junit/test-res.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
