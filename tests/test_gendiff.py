@@ -18,6 +18,7 @@ def test_get_dict_from_file():
 def test_get_dicts_difference():
     assert get_dicts_difference(get_dict_from_file(path_to_file_1),
                                 get_dict_from_file(path_to_file_2))
+
 # assert get_dicts_difference(path_to_file_1, path_to_file_2) == open()
 
 
