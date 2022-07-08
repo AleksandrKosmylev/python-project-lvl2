@@ -20,3 +20,9 @@ jobs:
           pip install pytest-cov
           pip install pyyaml
           pytest tests/test_gendiff.py
+      - name: Test with make
+        run: |
+          poetry install
+          poetry build
+          python3 -m pip install --user dist/*.whl --force-reinstall
+          poetry run pytest
