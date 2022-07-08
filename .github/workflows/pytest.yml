@@ -15,5 +15,5 @@ jobs:
         make install
         make build
     - name: Run linter and pytest
-      run: |
-        make pytest_lint
+      run: |	
+        poetry run pytest test_gendiff.py
