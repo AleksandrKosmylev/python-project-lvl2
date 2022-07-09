@@ -12,12 +12,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-      - name: Test with pytest
-        run: |
-          install pytest
+          pip install pytest
           pip install pytest-cov
           pip install pyyaml
           pip install poetry 
           poetry build
+      - name: Test with pytest
+        run: |
           make pytest_lint
           
