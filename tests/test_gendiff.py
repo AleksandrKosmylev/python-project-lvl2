@@ -1,3 +1,5 @@
+import yaml
+from yaml.loader import SafeLoader
 from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference
 
 
@@ -8,7 +10,8 @@ control_result = {
     'follow': False}
 path_to_file_1 = "tests/fixtures/file1.json"
 path_to_file_2 = "tests/fixtures/file2.json"
-path = 'gendiff/tests/fixtures/result_get_dicts_difference.yaml'
+#path = 'gendiff/tests/fixtures/result_get_dicts_difference.yaml'
+#path1 = '/home/aleksandr/hexlet/projects/python-project-lvl2/tests/fixtures/result_get_dicts_difference.yaml'
 
 
 def test_get_dict_from_file():
@@ -16,8 +19,12 @@ def test_get_dict_from_file():
 
 
 def test_get_dicts_difference():
+#    with open('/home/aleksandr/hexlet/projects/python-project-lvl2/tests/fixtures/result_get_dicts_difference.yaml') as f:
+#        data = yaml.load(f, Loader=SafeLoader)
     assert get_dicts_difference(get_dict_from_file(path_to_file_1),
                                 get_dict_from_file(path_to_file_2))
+
+
 
 # assert get_dicts_difference(path_to_file_1, path_to_file_2) == open()
 
