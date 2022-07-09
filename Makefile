@@ -8,7 +8,7 @@ test-coverage:
 	poetry run pytest --cov=python-project-lvl2  --cov-report xml
 
 lint:
-	poetry run flake8 hexlet_python_package
+	poetry run flake8 python-project-lvl2
 
 selfcheck:
 	poetry check
