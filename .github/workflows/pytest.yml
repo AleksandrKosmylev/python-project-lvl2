@@ -16,12 +16,6 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          pip install pytest
-          pip install pytest-cov
-          pip install pyyaml
-          pytest tests/test_gendiff.py
-      - name: Test with make
-        run: |
           pip install poetry 
           poetry build
           make pytest_lint
