@@ -22,7 +22,7 @@ jobs:
           pytest tests/test_gendiff.py
       - name: Test with make
         run: |
-          pip poetry install
+          pip install poetry 
           poetry build
           python3 -m pip install --user dist/*.whl --force-reinstall
           poetry run pytest
