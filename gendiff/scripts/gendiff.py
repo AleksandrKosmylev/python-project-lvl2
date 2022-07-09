@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import argparse
+import yaml
 from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference
 
 
@@ -14,7 +15,8 @@ def generate_diff():
     a = args.first_file
     b = args.second_file
     result = get_dicts_difference(get_dict_from_file(a), get_dict_from_file(b))
-    print(result)
+#    print(result)
+    print(yaml.dump(result))
 
 
 def main():

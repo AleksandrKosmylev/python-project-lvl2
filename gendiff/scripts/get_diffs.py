@@ -1,5 +1,4 @@
 import json
-import yaml
 
 
 def get_dict_from_file(path_to_file):
@@ -26,4 +25,5 @@ def get_dicts_difference(dict_1, dict_2):
             result['-' + i] = dict_1[i]
         else:
             result['+' + i] = dict_2[i]
-    return yaml.dump(result)
+#    return yaml.dump(result)
+    return result
