@@ -20,6 +20,7 @@ jobs:
       - name: Run linter and pytest
         run: |
           make check
+          ./cc-test-reporter format-coverage -t cobertura path/to/coverage_data ./cc-test-reporter upload-coverage
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
