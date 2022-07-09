@@ -25,6 +25,6 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: 5b62415018c8fc45160a4bea8fd46ce3f7d6bb03533b6bc61111f0355d9e32e2
         with:
-          coverageCommand: poetry run pytest
+          coverageCommand: poetry run pytest --cov=hexlet_python_package --cov-report xml
           debug: true
           
