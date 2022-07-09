@@ -11,18 +11,15 @@ jobs:
           python-version: 3.10.4
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest
-          pip install pytest-cov
-          pip install pyyaml
-          pip install poetry 
-          poetry build
-      - name: Test with pytest
+          pip install poetry
+          make install
+      - name: Run linter and pytest
         run: |
-          make pytest_lint
+          make check
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v2.7.4
         env:
-          CC_TEST_REPORTER_ID: 5b62415018c8fc45160a4bea8fd46ce3f7d6bb03533b6bc61111f0355d9e32e2
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: poetry run pytest
+          coverageCommand: make test-coverage
+          debug: true
