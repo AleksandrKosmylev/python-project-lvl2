@@ -13,7 +13,6 @@ jobs:
         run: |
           pip install poetry
           poetry add pytest
-          poetry add pyyaml
           make install
       - name: Run linter and pytest
         run: |
