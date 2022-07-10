@@ -2,10 +2,10 @@ install:
 	poetry install
 
 test:
-	poetry run pytest
+	poetry run pytest gendiff
 
 test-coverage:
-	poetry run pytest --cov=python-project-lvl2/tests/test_gendiff.py --cov-report xml
+	poetry run pytest -c tests/test_gendiff.py
 
 lint:
 	poetry run flake8 gendiff
