@@ -2,7 +2,7 @@ install:
 	poetry install
 
 test:
-	poetry run pytest gendiff
+	poetry run pytest tests/test_gendiff.py
 
 test-coverage:
 	poetry run pytest -c tests/test_gendiff.py
