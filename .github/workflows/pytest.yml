@@ -12,8 +12,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install poetry
-          poetry install
-          poetry run pytest
+          poetry install 
+          poetry run
           install pyyaml
           install pytest-cov
           install --upgrade setuptools
