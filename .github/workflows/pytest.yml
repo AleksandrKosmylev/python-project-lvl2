@@ -17,7 +17,6 @@ jobs:
           install pytest-cov
           install pyyaml
           poetry run pytest
-          install --upgrade setuptools
       - name: Run linter and pytest
         run: |
           make check
