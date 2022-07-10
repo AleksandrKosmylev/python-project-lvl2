@@ -5,10 +5,10 @@ test:
 	poetry run pytest
 
 test-coverage:
-	poetry run pytest --cov=gendiff --cov-report xml
+	poetry run pytest --cov=hexlet_python_package --cov-report xml
 
 lint:
-	poetry run flake8 gendiff
+	poetry run flake8 hexlet_python_package
 
 selfcheck:
 	poetry check
@@ -19,4 +19,3 @@ build: check
 	poetry build
 
 .PHONY: install test lint selfcheck check build
-
