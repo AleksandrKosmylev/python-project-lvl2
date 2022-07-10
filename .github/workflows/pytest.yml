@@ -14,8 +14,8 @@ jobs:
           pip install poetry
           poetry install 
           poetry install pytest
-          install pytest-cov
-          install pyyaml
+          poetry install pytest-cov
+          poetry install pyyaml
           poetry run pytest
       - name: Run linter and pytest
         run: |
