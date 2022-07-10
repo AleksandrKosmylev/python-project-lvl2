@@ -13,7 +13,7 @@ jobs:
         run: |
           pip install poetry
           poetry install
-          install pytest
+          install pytest gendiff
           install pyyaml
           install pytest-cov
           install --upgrade setuptools
