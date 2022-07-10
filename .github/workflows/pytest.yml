@@ -12,6 +12,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install poetry
+          make install
           install pytest
           install pyyaml
           install pytest-cov
