@@ -13,12 +13,11 @@ jobs:
         run: |
           pip install poetry
           poetry install 
-          poetry install pytest
-          poetry run pytest tests/test_gendiff.py
           install pyyaml
+          poetry install pytest
           install pytest-cov
+          poetry run pytest
           install --upgrade setuptools
-          make install
       - name: Run linter and pytest
         run: |
           make check
