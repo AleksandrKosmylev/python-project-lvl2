@@ -15,11 +15,8 @@ jobs:
           make install
       - name: Run linter and pytest
         run: |
-          make check
+          poetry run pytest --cov=gendiff --cov-report xml tests/
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: make test-coverage
-          debug: true
