@@ -14,6 +14,7 @@ path_to_file_2 = "tests/fixtures/file2.json"
 with open(r'tests/fixtures/result_get_dicts_difference.yaml') as file:
     f = yaml.load(file, Loader=yaml.FullLoader)
 
+
 def test_get_dict_from_file():
     assert get_dict_from_file(path_to_file_1) == control_result
 

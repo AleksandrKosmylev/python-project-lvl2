@@ -6,3 +6,4 @@ __pycache__/
 gendiff/scripts/functions.py
 .coverage
 coverage.xml
+drafts.py
