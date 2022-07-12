@@ -1,8 +1,12 @@
 import json
+import yaml
 
 
 def get_dict_from_file(path_to_file):
-    f = json.load(open(path_to_file))
+    if path_to_file.endswith(".json") is True:
+        f = json.load(open(path_to_file))
+    elif path_to_file.endswith(".yaml") is True:
+        f = yaml.load(open(path_to_file), Loader=yaml.FullLoader)
     return dict(f.items())
 
 
