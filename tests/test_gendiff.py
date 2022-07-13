@@ -1,5 +1,6 @@
 import yaml
 from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference
+from gendiff.scripts.gendiff import generate_diff
 
 
 control_result = {
@@ -7,8 +8,8 @@ control_result = {
     'timeout': 50,
     'proxy': '123.234.53.22',
     'follow': False}
-path_to_file_1 = "tests/fixtures/file1.json"
-path_to_file_2 = "tests/fixtures/file2.json"
+path_to_file_1_json = "tests/fixtures/file1.json"
+path_to_file_2_json = "tests/fixtures/file2.json"
 
 
 with open(r'tests/fixtures/result_get_dicts_difference.yaml') as file:
@@ -16,9 +17,14 @@ with open(r'tests/fixtures/result_get_dicts_difference.yaml') as file:
 
 
 def test_get_dict_from_file():
-    assert get_dict_from_file(path_to_file_1) == control_result
+    assert get_dict_from_file(path_to_file_1_json) == control_result
 
 
 def test_get_dicts_difference():
-    assert get_dicts_difference(get_dict_from_file(path_to_file_1),
-                                get_dict_from_file(path_to_file_2)) == f
+    assert get_dicts_difference(get_dict_from_file(path_to_file_1_json),
+                                get_dict_from_file(path_to_file_2_json)) == f
+
+def test_generate_diff_is_str():
+    g = generate_diff(path_to_file_1_json, path_to_file_2_json)
+    assert (isinstance(g, str)) is True
+
