@@ -8,6 +8,8 @@ control_result = {
     'timeout': 50,
     'proxy': '123.234.53.22',
     'follow': False}
+
+
 path_to_file_1_json = "tests/fixtures/file1.json"
 path_to_file_2_json = "tests/fixtures/file2.json"
 
@@ -21,10 +23,16 @@ def test_get_dict_from_file():
 
 
 def test_get_dicts_difference():
-    assert get_dicts_difference(get_dict_from_file(path_to_file_1_json),
-                                get_dict_from_file(path_to_file_2_json)) == f
+    a = get_dicts_difference(get_dict_from_file(path_to_file_1_json),
+                                get_dict_from_file(path_to_file_2_json))
+    assert a == f
+#    assert str(yaml.dump(a, sort_keys=False)) == f
+#    assert get_dicts_difference(get_dict_from_file(path_to_file_1_json),
+#                                get_dict_from_file(path_to_file_2_json)) == f
 
+"""
 def test_generate_diff_is_str():
     g = generate_diff(path_to_file_1_json, path_to_file_2_json)
     assert (isinstance(g, str)) is True
 
+"""
