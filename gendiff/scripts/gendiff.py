@@ -19,8 +19,7 @@ def print_result():
     parser = argparse.ArgumentParser(
         description='Compares two configuration files and shows a difference.')
 
-    parser.add_argument("-f", '--format [type]', default='stylish',
-                        action="store_true",
+    parser.add_argument("-f", '--format',
                         help=' output format (default: stylish)')
 
     parser.add_argument('first_file', type=str)
@@ -28,8 +27,12 @@ def print_result():
     args = parser.parse_args()
     a = args.first_file
     b = args.second_file
-    stringify(generate_diff(a, b))
- #   get_plain_diff(generate_diff(a, b))
+    if args.format == 'stylish':
+       stringify(generate_diff(a, b))
+    elif args.format == 'plain':
+       get_plain_diff(generate_diff(a, b))
+    else:
+        stringify(generate_diff(a, b))
 
 
 def main():
