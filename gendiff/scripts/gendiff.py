@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 import argparse
 import json
-# import yaml
+
 from gendiff.scripts.get_diffs import get_dict_from_file,\
-    get_dicts_difference,\
-    stringify,\
-    get_plain_diff
+    get_dicts_difference, stringify,\
+    get_plain_diff, convert_to_file, print_file_content
 
 
 def generate_diff(path_1, path_2):
@@ -25,16 +24,19 @@ def print_result():
     args = parser.parse_args()
     a = args.first_file
     b = args.second_file
-    json_object = json.dumps(generate_diff(a, b))
-    if args.format == 'stylish':
-       stringify(generate_diff(a, b))
-    elif args.format == 'plain':
-       get_plain_diff(generate_diff(a, b))
+    data = generate_diff(a, b)
+    json_object = json.dumps(data)
+    if args.format == 'plain':
+        convert_to_file(get_plain_diff, data)
+        print_file_content()
+    elif args.format == 'stylish':
+        convert_to_file(stringify, data)
+        print_file_content()
     elif args.format == 'json':
         json_object
     else:
-        stringify(generate_diff(a, b))
-
+        convert_to_file(get_plain_diff, data)
+        print_file_content()
 
 def main():
     print_result()

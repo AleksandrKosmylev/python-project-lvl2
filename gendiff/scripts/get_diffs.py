@@ -1,5 +1,6 @@
 import json
 import yaml
+import sys
 
 
 def get_dict_from_file(path_to_file):
@@ -185,7 +186,7 @@ def get_plain_diff(x):
                             acc = acc[:-1]
                         elif list(value[key_of_dict].values())[2] == '[__]':
                             acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)), status_value, '.From', end=' ' )
+                            print("Property", repr(''.join(acc)),'was updated. From', end=' ' )
                             print(repr(list(value[key_of_dict].values())[3]), 'to', end=' ')
                             print(repr(list(value[key_of_dict].values())[1]))
                             acc = acc[:-1]
@@ -196,3 +197,25 @@ def get_plain_diff(x):
                 else:
                     acc = acc[:-1]
     return walk(x, [])
+
+
+def convert_to_file(func, file_difference):
+    original_stdout = sys.stdout
+    output_file = open("output.yaml", 'w')
+    sys.stdout = output_file
+    func(file_difference)
+    output_file.close()
+    sys.stdout = original_stdout
+    with open("output.yaml", 'r') as file:
+        filedata = file.read()
+    to_replace = {'False': 'false', "True": "true", "None": "null"}
+    for i in to_replace.keys():
+        filedata = filedata.replace(i, to_replace[i])
+    with open("output.yaml", 'w') as file:
+        file.write(filedata)
+
+
+def print_file_content():
+    a_file = open("output.yaml")
+    file_contents = a_file.read()
+    print(file_contents)
