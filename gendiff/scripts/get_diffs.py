@@ -2,6 +2,7 @@ import json
 import yaml
 import sys
 
+# flake8: noqa: C901
 
 def get_dict_from_file(path_to_file):
     if path_to_file.endswith(".json") is True:
