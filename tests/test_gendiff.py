@@ -1,13 +1,9 @@
-import yaml
-
 from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference
 from gendiff.scripts.gendiff import generate_diff
 from gendiff.scripts.get_diffs import stringify
-import sys
-import json
-
-from tests import fixtures
-
+from gendiff.scripts.get_diffs import get_plain_diff
+from gendiff.scripts.get_diffs import convert_to_file
+import os
 
 
 control_result = {
@@ -17,64 +13,49 @@ control_result = {
     'follow': False}
 
 
-path_to_file_1_json = r"fixtures/file1.json"
-path_to_file_2_json = r"fixtures/file2.json"
-
-
-
-
-"""
-original_stdout = sys.stdout
-file_json = open("stringify_output.json", 'w')
-sys.stdout = file_json
-first = get_dict_from_file(path_to_file_1_json)
-second = get_dict_from_file(path_to_file_2_json)
-g = get_dicts_difference(first, second)
-stringify(g)
-file_json.close()
-file_json_read = open(r"tests/fixtures/stringify_output.json")
-"""
+path_to_file_1_json = r"tests/fixtures/first_stringify/file1.json"
+path_to_file_2_json = r"tests/fixtures/first_stringify/file2.json"
+path_to_file_1_1json = r"tests/fixtures/second/file1.json"
+path_to_file_2_1json = r"tests/fixtures/second/file2.json"
 
 
 def test_get_dict_from_file():
     assert get_dict_from_file(path_to_file_1_json) == control_result
 
+
 def test_stringify_flat_json():
-    file_json = open("stringify_output.json", 'w')
-    sys.stdout = file_json
-    first = get_dict_from_file(path_to_file_1_json)
-    second = get_dict_from_file(path_to_file_2_json)
-    g = get_dicts_difference(first, second)
-    stringify(g)
-    file_json.close()
-    with open("stringify_output.json", 'r') as file_1:
-        with open("fixtures/flat.json", 'r') as file_2:
+    data = generate_diff(path_to_file_1_json, path_to_file_2_json)
+    convert_to_file(stringify, data)
+    with open("gendiff.output.yaml", 'r') as file_1:
+        with open("tests/fixtures/first_stringify/test_stringify.json", 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
-            assert data_1 == data_2
-with open("stringify_output.json", 'r') as fileinput:
-   for line in fileinput:
-       line = line.lower()
+            try:
+                assert data_1 == data_2
+            finally:
+                os.remove("gendiff.output.yaml")
+
+
 """
-def test_get_dicts_difference():
-    a = get_dicts_difference(get_dict_from_file(path_to_file_1_json),
-                                get_dict_from_file(path_to_file_2_json))
-    assert a == f
-#    assert str(yaml.dump(a, sort_keys=False)) == f
-#    assert get_dicts_difference(get_dict_from_file(path_to_file_1_json),
-#                                get_dict_from_file(path_to_file_2_json)) == f
+def test_stringify_json():
+    data = generate_diff(path_to_file_1_1json, path_to_file_2_1json)
+    convert_to_file(stringify, data)
+    with open("output.yaml", 'r') as file_1:
+        with open("tests/fixtures/second/test_stringify.json", 'r') as file_2:
+            data_1 = file_1.read()
+            data_2 = file_2.read()
+            assert data_1 == data_2 , '{0} != {1}'.format(data_1, data_2)
 """
-"""
-def test_generate_diff_is_str():
-    g = generate_diff(path_to_file_1_json, path_to_file_2_json)
-    assert (isinstance(g, str)) is True
 
 
-
-
-
-    file_json.close()
-    with open(path_to_file_1_json,'r') as file_1:
-        with open(path_to_file_2_json, 'r') as file_2:
-            same = set(file_1).difference(file_2)
-"""
+def test_plain():
+    data = generate_diff(path_to_file_1_1json, path_to_file_2_1json)
+    convert_to_file(get_plain_diff, data)
+    with open("gendiff.output.yaml", 'r') as file_1:
+        with open("tests/fixtures/second/test_plain.json", 'r') as file_2:
+            data_1 = file_1.read()
+            data_2 = file_2.read()
+            try:
+                assert data_1 == data_2
+            finally:
+                os.remove("gendiff.output.yaml")

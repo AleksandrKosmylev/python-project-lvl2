@@ -69,8 +69,8 @@ def stringify(x, spaces=' ', count=1):
         if type(value) is dict:
             for key_of_dict in value.keys():
                 if type(value[key_of_dict]) is dict and keys_of_tree != list(value[key_of_dict].keys()):
-                    print(tabulation, key_of_dict, ": {")
-                    acc += 1
+                    print(f' {tabulation}{key_of_dict}:', " {")
+                    acc += 2
                     walk(value[key_of_dict], acc)
                 elif type(value[key_of_dict]) is dict and keys_of_tree == list(value[key_of_dict].keys()):
                     status_value = list(value[key_of_dict].values())[0]
@@ -80,59 +80,60 @@ def stringify(x, spaces=' ', count=1):
                     # list(value[key_of_dict].values())[2] == 'childs': ""
                     # (list(value[key_of_dict].values())[1]) == 'value': ""
                     if status_value == 'was added' and list(value[key_of_dict].values())[2] == '':
-                        print(tabulation, sigh(status_value), key_of_dict, ": ", end='')
+                        print(f' {tabulation} {sigh(status_value)} {key_of_dict}: ', end='')
                         print(list(value[key_of_dict].values())[1])
                     # check children: if childs exist.
                     # list(value[key_of_dict].values())[2] == 'childs': "{, }"
                     elif status_value == 'was added' and list(value[key_of_dict].values())[2] != '':
-                        print(tabulation, sigh(status_value), key_of_dict, ": {")
-                        acc += 1
+                        print(f' {tabulation} {sigh(status_value)} {key_of_dict}: ', "{")
+                        acc += 2
                         walk(list(value[key_of_dict].values())[2], acc)
                     elif status_value == 'no changes' and list(value[key_of_dict].values())[2] == '':
-                        print(tabulation, sigh(status_value), key_of_dict, ": ", end='')
+                        print(f' {tabulation} {sigh(status_value)} {key_of_dict}: ', end='')
                         print(list(value[key_of_dict].values())[1])
                     elif status_value == 'no changes' and list(value[key_of_dict].values())[2] != '':
-                        print(tabulation, sigh(status_value), key_of_dict, ":")
-                        acc += 1
+                        print(f' {tabulation} {sigh(status_value)} {key_of_dict}:')
+                        acc += 2
                         walk(list(value[key_of_dict].values())[2], acc)
                     # list(value[key_of_dict].values())[3] == 'old_value': ''
                     elif status_value == 'was updated':
                         if list(value[key_of_dict].values())[2] == '[**]':
-                            print(tabulation, '-', key_of_dict, ": {")
-                            acc += 1
+                            print(f' {tabulation} - {key_of_dict}: ', " {")
+                            acc += 2
                             walk(list(value[key_of_dict].values())[3], acc)
-                            print(tabulation, '+', key_of_dict, ":")
+                            print(f' {tabulation} + {key_of_dict}: ')
                             walk(list(value[key_of_dict].values())[1], acc)
                         elif list(value[key_of_dict].values())[2] == '[_*]':
-                            print(tabulation, '-', key_of_dict, ":")
+                            print(f' {tabulation} - {key_of_dict}: ')
                             print(list(value[key_of_dict].values())[3])
-                            print(tabulation, '+', key_of_dict, ":{")
-                            acc += 1
+                            print(f' {tabulation} + {key_of_dict}:', "{")
+                            acc += 2
                             walk(list(value[key_of_dict].values())[1], acc)
                         elif list(value[key_of_dict].values())[2] == '[*_]':
-                            print(tabulation, '-', key_of_dict, ": {")
-                            acc += 1
+                            print(f' {tabulation} - {key_of_dict}: ', "{")
+                            acc += 2
                             walk(list(value[key_of_dict].values())[3], acc)
-                            print(tabulation, '+', key_of_dict, ": ", end='')
+                            print(f' {tabulation} + {key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
                         elif list(value[key_of_dict].values())[2] == '[__]':
-                            print(tabulation, '-', key_of_dict, ": ", end='')
+                            print(f' {tabulation} - {key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[3])
-                            print(tabulation, '+', key_of_dict, ": ", end='')
+                            print(f' {tabulation} + {key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
                     elif status_value == 'was updated' and list(value[key_of_dict].values())[2] != '':
-                        print(tabulation, '-', key_of_dict, ":")
-                        print(tabulation, '+', key_of_dict, ":")
+                        print(f' {tabulation} - {key_of_dict} :')
+                        print(f' {tabulation} + {key_of_dict} :')
                     elif status_value == 'was removed' and list(value[key_of_dict].values())[2] == '':
-                        print(tabulation, sigh(status_value), key_of_dict, ": ", end='')
+                        print(f' {tabulation} {sigh(status_value)} {key_of_dict}: ', end='')
                         print(list(value[key_of_dict].values())[3])
                     elif status_value == 'was removed' and list(value[key_of_dict].values())[2] != '':
-                        print(tabulation, sigh(status_value), key_of_dict, ": {")
-                        acc += 1
+                        print(f' {tabulation} {sigh(status_value)} {key_of_dict} : ', "{")
+                        acc += 2
                         walk(list(value[key_of_dict].values())[2], acc)
                 if type(value[key_of_dict]) is not dict:
-                    print(tabulation, key_of_dict, ':', value[key_of_dict])
-            print(tabulation, '}')
+                    acc += 2
+                    print(f'{tabulation} {key_of_dict}: ', value[key_of_dict])
+            print(f'{tabulation}', ' }')
     print("{")
     return walk(x, 0)
 
@@ -158,7 +159,8 @@ def get_plain_diff(x):
                         # list(value[key_of_dict].values())[2] == 'childs': "{, }
                         if list(value[key_of_dict].values())[2] == '':
                             acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)), status_value, "with value:", end=' ')
+                            print("Property", repr(''.join(acc)), status_value, "with value:",
+                                  end=' ')
                             print(repr(list(value[key_of_dict].values())[1]))
                             acc = acc[:-1]
                         elif list(value[key_of_dict].values())[2] != '':
@@ -174,19 +176,19 @@ def get_plain_diff(x):
                             acc = acc[:-1]
                         elif list(value[key_of_dict].values())[2] == '[_*]':
                             acc.append(str(key_of_dict) + '.')
-                            print("Property", repr(''.join(acc)), 'was updated. From', end=' ' )
+                            print("Property", repr(''.join(acc)), 'was updated. From', end=' ')
                             print(repr(list(value[key_of_dict].values())[1]), 'to', end=' ')
                             print('[complex value]')
                             acc = acc[:-1]
                         elif list(value[key_of_dict].values())[2] == '[*_]':
                             acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)),'was updated. From', end=' ' )
+                            print("Property", repr(''.join(acc)), 'was updated. From', end=' ')
                             print('[complex value] to', end=' ')
                             print(repr(list(value[key_of_dict].values())[1]))
                             acc = acc[:-1]
                         elif list(value[key_of_dict].values())[2] == '[__]':
                             acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)),'was updated. From', end=' ' )
+                            print("Property", repr(''.join(acc)), 'was updated. From', end=' ')
                             print(repr(list(value[key_of_dict].values())[3]), 'to', end=' ')
                             print(repr(list(value[key_of_dict].values())[1]))
                             acc = acc[:-1]
@@ -201,21 +203,39 @@ def get_plain_diff(x):
 
 def convert_to_file(func, file_difference):
     original_stdout = sys.stdout
-    output_file = open("output.yaml", 'w')
+    output_file = open("gendiff.output.yaml", 'w')
     sys.stdout = output_file
     func(file_difference)
     output_file.close()
     sys.stdout = original_stdout
-    with open("output.yaml", 'r') as file:
+    with open("gendiff.output.yaml", 'r') as file:
         filedata = file.read()
     to_replace = {'False': 'false', "True": "true", "None": "null"}
     for i in to_replace.keys():
         filedata = filedata.replace(i, to_replace[i])
-    with open("output.yaml", 'w') as file:
+    with open("gendiff.output.yaml", 'w') as file:
         file.write(filedata)
+    if func == stringify:
+        with open("gendiff.output.yaml", 'r+') as file:
+            lines = file.readlines()
+            file.seek(0)
+            file.truncate()
+            file.writelines(lines[:-1])
+        with open("gendiff.output.yaml", 'a') as file:
+            file.write('}')
+
+
+"""    elif func == get_plain_diff:
+        with open("output.yaml", 'r+') as file:
+            lines = file.readlines()
+            lines.strip()
+            file.seek(0)
+            file.truncate()
+            file.writelines(lines[:])
+"""
 
 
 def print_file_content():
-    a_file = open("output.yaml")
+    a_file = open("gendiff.output.yaml")
     file_contents = a_file.read()
     print(file_contents)

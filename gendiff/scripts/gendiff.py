@@ -35,8 +35,9 @@ def print_result():
     elif args.format == 'json':
         json_object
     else:
-        convert_to_file(get_plain_diff, data)
+        convert_to_file(stringify, data)
         print_file_content()
+
 
 def main():
     print_result()
