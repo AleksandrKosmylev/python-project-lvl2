@@ -26,14 +26,14 @@ def test_get_dict_from_file():
 def test_stringify_flat_json():
     data = generate_diff(path_to_file_1_json, path_to_file_2_json)
     convert_to_file(stringify, data)
-    with open("gendiff.output.yaml", 'r') as file_1:
+    with open("gendiff/output.json", 'r') as file_1:
         with open("tests/fixtures/first_stringify/test_stringify.json", 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
             try:
                 assert data_1 == data_2
             finally:
-                os.remove("gendiff.output.yaml")
+                os.remove("gendiff/output.json")
 
 
 """
@@ -51,11 +51,11 @@ def test_stringify_json():
 def test_plain():
     data = generate_diff(path_to_file_1_1json, path_to_file_2_1json)
     convert_to_file(get_plain_diff, data)
-    with open("gendiff.output.yaml", 'r') as file_1:
+    with open("gendiff/output.json", 'r') as file_1:
         with open("tests/fixtures/second/test_plain.json", 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
             try:
                 assert data_1 == data_2
             finally:
-                os.remove("gendiff.output.yaml")
+                os.remove("gendiff/output.json")

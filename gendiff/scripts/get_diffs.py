@@ -204,39 +204,29 @@ def get_plain_diff(x):
 
 def convert_to_file(func, file_difference):
     original_stdout = sys.stdout
-    output_file = open("gendiff.output.yaml", 'w')
+    output_file = open("gendiff/output.json", 'w')
     sys.stdout = output_file
     func(file_difference)
     output_file.close()
     sys.stdout = original_stdout
-    with open("gendiff.output.yaml", 'r') as file:
+    with open("gendiff/output.json", 'r') as file:
         filedata = file.read()
     to_replace = {'False': 'false', "True": "true", "None": "null"}
     for i in to_replace.keys():
         filedata = filedata.replace(i, to_replace[i])
-    with open("gendiff.output.yaml", 'w') as file:
+    with open("gendiff/output.json", 'w') as file:
         file.write(filedata)
     if func == stringify:
-        with open("gendiff.output.yaml", 'r+') as file:
+        with open("gendiff/output.json", 'r+') as file:
             lines = file.readlines()
             file.seek(0)
             file.truncate()
             file.writelines(lines[:-1])
-        with open("gendiff.output.yaml", 'a') as file:
+        with open("gendiff/output.json", 'a') as file:
             file.write('}')
 
 
-"""    elif func == get_plain_diff:
-        with open("output.yaml", 'r+') as file:
-            lines = file.readlines()
-            lines.strip()
-            file.seek(0)
-            file.truncate()
-            file.writelines(lines[:])
-"""
-
-
 def print_file_content():
-    a_file = open("gendiff.output.yaml")
+    a_file = open("gendiff/output.json")
     file_contents = a_file.read()
     print(file_contents)

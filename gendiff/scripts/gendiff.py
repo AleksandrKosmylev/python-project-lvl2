@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import argparse
 import json
+import os
 
 from gendiff.scripts.get_diffs import get_dict_from_file,\
     get_dicts_difference, stringify,\
@@ -25,18 +26,21 @@ def print_result():
     a = args.first_file
     b = args.second_file
     data = generate_diff(a, b)
-    json_object = json.dumps(data)
     if args.format == 'plain':
         convert_to_file(get_plain_diff, data)
         print_file_content()
+        os.remove("gendiff/output.json")
     elif args.format == 'stylish':
         convert_to_file(stringify, data)
         print_file_content()
+        os.remove("gendiff/output.json")
     elif args.format == 'json':
-        json_object
+        jsonStr = json.dumps(data)
+        print(jsonStr)
     else:
         convert_to_file(stringify, data)
         print_file_content()
+        os.remove("gendiff/output.json")
 
 
 def main():
