@@ -231,3 +231,10 @@ def print_file_content():
     a_file = open("gendiff/output.json")
     file_contents = a_file.read()
     print(file_contents)
+
+
+def generate_diff(path_1, path_2):
+    dict_1 = get_dict_from_file(path_1)
+    dict_2 = get_dict_from_file(path_2)
+    result = get_dicts_difference(dict_1, dict_2)
+    return result
