@@ -1,5 +1,6 @@
 install:
 	poetry install
+	poetry install
 
 test:
 	poetry run pytest tests/test_gendiff.py
