@@ -20,8 +20,8 @@ def print_result():
         description='Compares two configuration files and shows a difference.')
     parser.add_argument("-f", '--format',
                         help='set format of output')
-    parser.add_argument('first_file', type=str)
-    parser.add_argument('second_file', type=str)
+    parser.add_argument('<filepath1>', type=str)
+    parser.add_argument('<filepath2>', type=str)
     args = parser.parse_args()
     a = args.first_file
     b = args.second_file
