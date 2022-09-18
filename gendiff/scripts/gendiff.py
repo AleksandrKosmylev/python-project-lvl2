@@ -2,6 +2,7 @@
 import argparse
 import json
 import os
+from gendiff import generate_diff
 
 from gendiff.scripts.get_diffs import get_dict_from_file,\
     get_dicts_difference, stringify,\
