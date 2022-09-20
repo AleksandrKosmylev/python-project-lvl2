@@ -239,5 +239,3 @@ def generate_diff(path_1, path_2):
     result = get_dicts_difference(dict_1, dict_2)
     return result
 
-
-__all__ = ('generate_diff')

@@ -6,16 +6,16 @@ import os
 
 from gendiff.scripts.get_diffs import get_dict_from_file,\
     get_dicts_difference, stringify,\
-    get_plain_diff, convert_to_file, print_file_content
+    get_plain_diff, convert_to_file, print_file_content, generate_diff
 #from gendiff.scripts.get_diffs import *
 
-
+"""
 def generate_diff(path_1, path_2):
     dict_1 = get_dict_from_file(path_1)
     dict_2 = get_dict_from_file(path_2)
     result = get_dicts_difference(dict_1, dict_2)
     return result
-
+"""
 
 def print_result():
     parser = argparse.ArgumentParser(
@@ -51,5 +51,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-__all__ = ('generate_diff')
