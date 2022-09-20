@@ -1,2 +1,2 @@
-__all__ = ('for_gendiff')
+__all__ = ('for_gendiff', 'gendiff', 'get_diffs')
 
