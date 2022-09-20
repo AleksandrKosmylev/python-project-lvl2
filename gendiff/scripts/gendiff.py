@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from gendiff.scripts.for_gendiff import print_result
+from gendiff.scripts.for_gendiff import *
 
 
 def main():
