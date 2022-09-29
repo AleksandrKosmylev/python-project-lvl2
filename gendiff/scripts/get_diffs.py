@@ -13,7 +13,7 @@ def get_dict_from_file(path_to_file):
         f = yaml.load(open(path_to_file), Loader=yaml.FullLoader)
         return dict(f.items())
     elif path_to_file == None:
-        return {}/n
+        return {}\n
 
 
 def sigh(mark):
