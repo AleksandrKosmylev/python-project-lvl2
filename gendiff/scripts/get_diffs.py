@@ -2,7 +2,7 @@ import codecs
 import json
 import yaml
 import sys
-sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+#sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
 # flake8: noqa: C901
 
