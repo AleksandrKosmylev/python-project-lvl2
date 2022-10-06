@@ -36,16 +36,16 @@ def test_stringify_flat_json():
                 os.remove("gendiff/output.json")
 
 
-"""
+
 def test_stringify_json():
     data = generate_diff(path_to_file_1_1json, path_to_file_2_1json)
     convert_to_file(stringify, data)
-    with open("output.yaml", 'r') as file_1:
+    with open("gendiff/output.json", 'r') as file_1:
         with open("tests/fixtures/second/test_stringify.json", 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
             assert data_1 == data_2 , '{0} != {1}'.format(data_1, data_2)
-"""
+
 
 
 def test_plain():
