@@ -2,7 +2,6 @@
 
 import argparse
 import json
-import os
 
 
 from gendiff.scripts.get_diffs import stringify,\
@@ -32,18 +31,18 @@ def print_result():
     if args.format == 'plain':
         convert_to_file(get_plain_diff, data)
         print_file_content()
- #       os.remove("gendiff/output.json")
+#        os.remove("gendiff/output.json")
     elif args.format == 'stylish':
         convert_to_file(stringify, data)
         print_file_content()
- #       os.remove("gendiff/output.json")
+#        os.remove("gendiff/output.json")
     elif args.format == 'json':
         jsonStr = json.dumps(data)
         print(jsonStr)
     else:
         convert_to_file(stringify, data)
         print_file_content()
-  #      os.remove("gendiff/output.json")
+#        os.remove("gendiff/output.json")
 
 
 def main():

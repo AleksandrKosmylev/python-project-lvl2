@@ -139,10 +139,16 @@ def stringify(x, spaces='  '):
                                 print(f'{tabulation}+ {key_of_dict}: ', end='')
                                 print(list(value[key_of_dict].values())[1])
                             elif list(value[key_of_dict].values())[2] == '[__]':
-                                print(f'{tabulation}- {key_of_dict}: ', end='')
-                                print(list(value[key_of_dict].values())[3])
-                                print(f'{tabulation}+ {key_of_dict}: ', end='')
-                                print(list(value[key_of_dict].values())[1])
+                                print(f'{tabulation}- {key_of_dict}:', end='')
+                                if list(value[key_of_dict].values())[3] == "":
+                                    print(list(value[key_of_dict].values())[3],sep="")
+                                else:
+                                    print("",list(value[key_of_dict].values())[3])
+                                print(f'{tabulation}+ {key_of_dict}:', end='')
+                                if list(value[key_of_dict].values())[1] == "":
+                                    print(list(value[key_of_dict].values())[1],sep="")
+                                else:
+                                    print("",list(value[key_of_dict].values())[1])
                         elif status_value == 'was updated' and list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}- {key_of_dict} :')
                             print(f'{tabulation}+ {key_of_dict} :')
