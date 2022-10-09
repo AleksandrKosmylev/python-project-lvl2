@@ -68,7 +68,8 @@ def get_dicts_difference(dict_1, dict_2):
 
 
 def stringify(x, spaces='  '):
-    def walk(value, acc, count=1):
+    def walk(value, acc):
+#        acc +=1
         tabulation = spaces * acc
         keys_of_tree = ['status', 'value', 'childs', 'old_value']
         if type(value) is dict:
@@ -78,17 +79,12 @@ def stringify(x, spaces='  '):
                         acc += 1
                         tabulation = spaces * acc
                         print(f'{tabulation}{key_of_dict}:', "{")
-                        count = acc
-   #                     print("*1")
-                        acc += 1
+                        walk(value[key_of_dict], acc+1)
+#                        print(tabulation + '1}')
+                        acc -= 1
                         tabulation = spaces * acc
-                        walk(value[key_of_dict], acc)
-                        acc -= 2
-                        tabulation = spaces * acc
-                        #print("2")
                     elif keys_of_tree == list(value[key_of_dict].keys()):
                         status_value = list(value[key_of_dict].values())[0]
-                        #print("->")
                         # branches that depend on status
                         # was added.
                         # check children: if no childs.
@@ -102,120 +98,77 @@ def stringify(x, spaces='  '):
                         # list(value[key_of_dict].values())[2] == 'childs': "{, }"
                         elif status_value == 'was added' and list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}:', "{")
-                            #print("4")
-                            count = acc
                             acc += 1
                             tabulation = spaces * acc
-                            walk(list(value[key_of_dict].values())[2], acc)
-                            acc -= 1
+                            walk(list(value[key_of_dict].values())[2], acc+1)
                             tabulation = spaces * acc
-                            #print("5")
+#                            print(tabulation + '2}')
+                            acc -=1
+                            #print(tabulation + '!2}')
                         elif status_value == 'no changes' and list(value[key_of_dict].values())[2] == '':
-                            #print("6")
-                            #acc -= 1
-                            tabulation = spaces * acc
                             print(f' {tabulation}{sigh(status_value)}{key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
-                            #acc += 1
-                            tabulation = spaces * acc
-                            count = acc
                         elif status_value == 'no changes' and list(value[key_of_dict].values())[2] != '':
-                            #print("7")
                             print(f'{tabulation}{sigh(status_value)}{key_of_dict}:')
-                            count = acc
-                            acc += 1
-                            tabulation = spaces * acc
-
-                            walk(list(value[key_of_dict].values())[2], acc)
-                            acc -= 1
-                            tabulation = spaces * acc
-                            #print("8")
-                        # list(value[key_of_dict].values())[3] == 'old_value': ''
+                            walk(list(value[key_of_dict].values())[2], acc+1)
+#                            print(tabulation + '3}')
                         elif status_value == 'was updated':
                             #print("-->")
                             if list(value[key_of_dict].values())[2] == '[**]':
-                                #print("9")
                                 print(f'{tabulation}- {key_of_dict}: ', " {")
-                                count = acc
-                                acc += 1
-                                tabulation = spaces * acc
-                                walk(list(value[key_of_dict].values())[3], acc)
-                                acc -= 1
-                                tabulation = spaces * acc
-                                #print("+10")
+                                walk(list(value[key_of_dict].values())[3], acc+1)
+#                                print(tabulation + '4}')
                                 print(f'{tabulation}+ {key_of_dict}: ')
-                                count = acc
-                                walk(list(value[key_of_dict].values())[1], acc)
-                                acc -= 1
-                                tabulation = spaces * acc
-                                count = acc
-                                #print("+11")
+                                walk(list(value[key_of_dict].values())[1], acc+1)
+#                                print(tabulation + '5}')
                             elif list(value[key_of_dict].values())[2] == '[_*]':
-                                #print("+12", end="")
                                 print(f'{tabulation}- {key_of_dict}: ')
                                 print(list(value[key_of_dict].values())[3])
                                 print(f'{tabulation}+ {key_of_dict}:', "{")
-                                count = acc
-                                acc += 1
-                                tabulation = spaces * acc
-                                walk(list(value[key_of_dict].values())[1], acc)
-                                acc -= 1
-                                tabulation = spaces * acc
-                                #print("+13")
+                                walk(list(value[key_of_dict].values())[1], acc+1)
+#                                print(tabulation + '6}')
                             elif list(value[key_of_dict].values())[2] == '[*_]':
-                                #print("+14")
                                 print(f'{tabulation}- {key_of_dict}:', "{")
-                                count = acc
                                 acc += 1
                                 tabulation = spaces * acc
-
-                                walk(list(value[key_of_dict].values())[3], acc)
+                                walk(list(value[key_of_dict].values())[3], acc +1)
+#                                print(tabulation + '7}')
                                 acc -= 1
                                 tabulation = spaces * acc
-                                #print("+15")
+                                #print(tabulation + '7}')
                                 print(f'{tabulation}+ {key_of_dict}: ', end='')
                                 print(list(value[key_of_dict].values())[1])
-                                acc -= 1
-                                tabulation = spaces * acc
                             elif list(value[key_of_dict].values())[2] == '[__]':
-                                #print("+16")
                                 print(f'{tabulation}- {key_of_dict}: ', end='')
                                 print(list(value[key_of_dict].values())[3])
                                 print(f'{tabulation}+ {key_of_dict}: ', end='')
                                 print(list(value[key_of_dict].values())[1])
-                      #          acc -= 2
-                          #      tabulation = spaces * acc
                         elif status_value == 'was updated' and list(value[key_of_dict].values())[2] != '':
-                            #print("+17")
                             print(f'{tabulation}- {key_of_dict} :')
                             print(f'{tabulation}+ {key_of_dict} :')
                         elif status_value == 'was removed' and list(value[key_of_dict].values())[2] == '':
-                            #print("+18")
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[3])
                         elif status_value == 'was removed' and list(value[key_of_dict].values())[2] != '':
-                            #print("+19")
-                            print(f'{tabulation}{sigh(status_value)}{key_of_dict}:', "{")
-                            count = acc
+                            print(f'{tabulation}{sigh(status_value)} {key_of_dict}:', "{")
                             acc += 1
                             tabulation = spaces * acc
-                            walk(list(value[key_of_dict].values())[2], acc)
-                            acc -= 1
+                            walk(list(value[key_of_dict].values())[2], acc+1)
+#                            print(tabulation + '8}')
+                            acc -=1
                             tabulation = spaces * acc
-                            #print("+20")
                     else:
                         print('***')
                 if type(value[key_of_dict]) is not dict:
-                    count = acc
-                    acc += 2
+                    acc += 1
+                    tabulation = spaces * acc
+                    print(f'{tabulation}{key_of_dict}:',value[key_of_dict])
+                    acc -= 1
                     tabulation = spaces * acc
 
-                    #print("+21")
-                    print(f'{tabulation}{key_of_dict}:',value[key_of_dict])
-                    acc -= 2
-                    tabulation = spaces * acc
-            #print("#")
-    #    tabulation = spaces * count
+
+        acc -= 1
+        tabulation = spaces * acc
         print(tabulation + '}')
     #print("end")
     print("{")
