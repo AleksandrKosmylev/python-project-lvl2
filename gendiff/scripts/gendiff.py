@@ -1,20 +1,9 @@
 #!/usr/bin/env python
 
 import argparse
-import json
 
 
-from gendiff.scripts.get_diffs import stringify,\
-    get_plain_diff, convert_to_file, print_file_content, generate_diff
-
-
-"""
-def generate_diff(path_1, path_2):
-    dict_1 = get_dict_from_file(path_1)
-    dict_2 = get_dict_from_file(path_2)
-    result = get_dicts_difference(dict_1, dict_2)
-    return result
-"""
+from gendiff.scripts.get_diffs import generate_diff
 
 
 def print_result():
@@ -27,21 +16,17 @@ def print_result():
     args = parser.parse_args()
     a = args.filepath1
     b = args.filepath2
-    data = generate_diff(a, b)
     if args.format == 'plain':
-        convert_to_file(get_plain_diff, data)
-        print_file_content()
+        generate_diff(a, b, 'plain')
 #        os.remove("gendiff/output.json")
     elif args.format == 'stylish':
-        convert_to_file(stringify, data)
-        print_file_content()
+        generate_diff(a, b)
 #        os.remove("gendiff/output.json")
     elif args.format == 'json':
-        jsonStr = json.dumps(data)
-        print(jsonStr)
+        generate_diff(a, b, 'json')
+#        os.remove("gendiff/output.json")
     else:
-        convert_to_file(stringify, data)
-        print_file_content()
+        generate_diff(a, b)
 #        os.remove("gendiff/output.json")
 
 
