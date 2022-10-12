@@ -276,7 +276,7 @@ def print_file_content():
     print(file_contents)
 
 
-def generate(path_1, path_2, formatter='stylish'):
+def generate_diff(path_1, path_2, formatter='stylish'):
     dict_1 = get_dict_from_file(path_1)
     dict_2 = get_dict_from_file(path_2)
     result = get_dicts_difference(dict_1, dict_2)

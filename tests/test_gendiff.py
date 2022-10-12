@@ -1,4 +1,4 @@
-from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference, generate
+from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference
 from gendiff.scripts.gendiff import generate_diff
 from gendiff.scripts.get_diffs import stringify
 from gendiff.scripts.get_diffs import get_plain_diff
@@ -27,7 +27,7 @@ def test_get_dict_from_file():
 
 
 def test_stringify_flat_json():
-    generate(path_to_file_1_json, path_to_file_2_json)
+    generate_diff(path_to_file_1_json, path_to_file_2_json)
     with open(output_path, 'r') as file_1:
         with open("tests/fixtures/first_stringify/test_stringify.json", 'r') as file_2:
             data_1 = file_1.read()
@@ -39,7 +39,7 @@ def test_stringify_flat_json():
 
 
 def test_stringify_json():
-    generate(path_to_file_1_1json, path_to_file_2_1json)
+    generate_diff(path_to_file_1_1json, path_to_file_2_1json)
     with open(output_path, 'r') as file_1:
         with open("tests/fixtures/second/test_stringify.json", 'r') as file_2:
             data_1 = file_1.read()
@@ -48,7 +48,7 @@ def test_stringify_json():
 
 
 def test_stringify_yaml():
-    generate(path_to_file_1_1yaml, path_to_file_2_1yaml)
+    generate_diff(path_to_file_1_1yaml, path_to_file_2_1yaml)
     with open(output_path, 'r') as file_1:
         with open("tests/fixtures/second/test_stringify.json", 'r') as file_2:
             data_1 = file_1.read()
@@ -57,7 +57,7 @@ def test_stringify_yaml():
 
 
 def test_plain():
-    generate(path_to_file_1_1yaml, path_to_file_2_1yaml, "plain")
+    generate_diff(path_to_file_1_1yaml, path_to_file_2_1yaml, "plain")
     with open(output_path, 'r') as file_1:
         with open("tests/fixtures/second/test_plain.json", 'r') as file_2:
             data_1 = file_1.read()
