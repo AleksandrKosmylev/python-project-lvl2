@@ -2,6 +2,7 @@ import codecs
 import json
 import yaml
 import sys
+import os
 #sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
 # flake8: noqa: C901
@@ -246,30 +247,31 @@ def get_plain_diff(x):
 
 def convert_to_file(func, file_difference):
     original_stdout = sys.stdout
-    output_file = open("gendiff/output.json", 'w')
+    current_directory = os.getcwd()
+    output_file = open(current_directory + "/output.json", 'w')
     sys.stdout = output_file
     func(file_difference)
     output_file.close()
     sys.stdout = original_stdout
-    with open("gendiff/output.json", 'r') as file:
+    with open(current_directory + "/output.json", 'r') as file:
         filedata = file.read()
     to_replace = {'False': 'false', "True": "true", "None": "null"}
     for i in to_replace.keys():
         filedata = filedata.replace(i, to_replace[i])
-    with open("gendiff/output.json", 'w') as file:
+    with open(current_directory + "/output.json", 'w') as file:
         file.write(filedata)
     if func == stringify:
-        with open("gendiff/output.json", 'r+') as file:
+        with open(current_directory + "/output.json", 'r+') as file:
             lines = file.readlines()
             file.seek(0)
             file.truncate()
             file.writelines(lines[:-1])
-        with open("gendiff/output.json", 'a') as file:
+        with open(current_directory + "/output.json", 'a') as file:
             file.write('}')
 
 
 def print_file_content():
-    a_file = open("gendiff/output.json")
+    a_file = open(current_directory + "/output.json")
     file_contents = a_file.read()
     print(file_contents)
 
@@ -288,3 +290,6 @@ def generate_diff(path_1, path_2, formatter='stylish'):
         jsonStr = json.dumps(result)
         print(jsonStr)
 
+
+current_directory = os.getcwd()
+output_path = current_directory + "/output.json"
