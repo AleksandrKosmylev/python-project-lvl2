@@ -289,7 +289,7 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     elif formatter == 'plain':
         convert_to_file(get_plain_diff, result)
  #       print_file_content()
-
+        return 1
     elif formatter == 'json':
         jsonStr = json.dumps(result)
         return jsonStr
