@@ -278,7 +278,7 @@ def print_file_content():
   #          data = f.read()
 #        data = yaml.load(f, Loader=yaml.Loader)
 #        data = json.loads(f)
-        return "888"
+
 
 
 #    with open(current_directory + "/output.json", 'r') as a_file:
