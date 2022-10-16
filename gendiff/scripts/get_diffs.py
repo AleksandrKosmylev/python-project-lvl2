@@ -272,7 +272,7 @@ def convert_to_file(func, file_difference):
 
 def print_file_content():
     with open(current_directory + "/output.txt") as f:
-            data = f.read()
+            data = f.readlines()
 #        data = yaml.load(f, Loader=yaml.Loader)
 #        data = json.loads(f)
     return data
