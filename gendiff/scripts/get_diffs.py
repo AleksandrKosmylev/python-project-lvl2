@@ -302,4 +302,4 @@ def generate_diff(path_1, path_2, formatter='stylish'):
 
 
 current_directory = os.getcwd()
-output_path = current_directory + "/output.json"
+output_path = current_directory + "/output.txt"
