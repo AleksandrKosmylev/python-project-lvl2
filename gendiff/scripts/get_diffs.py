@@ -268,9 +268,6 @@ def convert_to_file(func, file_difference):
             file.writelines(lines[:-1])
         with open(current_directory + "/output.json", 'a') as file:
             file.write('}')
-        return 1
-    else:
-        return 2
 
 
 
@@ -294,13 +291,13 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     result = get_dicts_difference(dict_1, dict_2)
     if formatter == 'stylish':
         convert_to_file(stringify, result)
-        return 7
+        return "7"
  #       print_file_content()
 
     elif formatter == 'plain':
         convert_to_file(get_plain_diff, result)
  #       print_file_content()
-        return 6
+        return "6"
 
     elif formatter == 'json':
         jsonStr = json.dumps(result)
