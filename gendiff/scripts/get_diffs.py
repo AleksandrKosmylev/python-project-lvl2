@@ -248,31 +248,38 @@ def get_plain_diff(x):
 def convert_to_file(func, file_difference):
     original_stdout = sys.stdout
     current_directory = os.getcwd()
-    output_file = open(current_directory + "/output.json", 'w')
+    output_file = open(current_directory + "/output.txt", 'w')
     sys.stdout = output_file
     func(file_difference)
     output_file.close()
     sys.stdout = original_stdout
-    with open(current_directory + "/output.json", 'r') as file:
+    with open(current_directory + "/output.txt", 'r') as file:
         filedata = file.read()
     to_replace = {'False': 'false', "True": "true", "None": "null"}
     for i in to_replace.keys():
         filedata = filedata.replace(i, to_replace[i])
-    with open(current_directory + "/output.json", 'w') as file:
+    with open(current_directory + "/output.txt", 'w') as file:
         file.write(filedata)
     if func == stringify:
-        with open(current_directory + "/output.json", 'r+') as file:
+        with open(current_directory + "/output.txt", 'r+') as file:
             lines = file.readlines()
             file.seek(0)
             file.truncate()
             file.writelines(lines[:-1])
-        with open(current_directory + "/output.json", 'a') as file:
+        with open(current_directory + "/output.txt", 'a') as file:
             file.write('}')
 
 
 def print_file_content():
-    a_file = open(current_directory + "/output.json")
-    a_file.read()
+    with open(current_directory + "/output.txt") as f:
+            data = f.read()
+#        data = yaml.load(f, Loader=yaml.Loader)
+#        data = json.loads(f)
+    return data
+
+
+#    with open(current_directory + "/output.json", 'r') as a_file:
+ #       json.loads(a_file)
 
 
 
@@ -282,13 +289,11 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     result = get_dicts_difference(dict_1, dict_2)
     if formatter == 'stylish':
         convert_to_file(stringify, result)
-
-
- #       print_file_content()
+        print_file_content()
 
     elif formatter == 'plain':
         convert_to_file(get_plain_diff, result)
- #       print_file_content()
+        print_file_content()
 
     elif formatter == 'json':
         jsonStr = json.dumps(result)
@@ -297,4 +302,4 @@ def generate_diff(path_1, path_2, formatter='stylish'):
 
 
 current_directory = os.getcwd()
-output_path = current_directory + "/output.json"
+output_path = current_directory + "/output.txt"
