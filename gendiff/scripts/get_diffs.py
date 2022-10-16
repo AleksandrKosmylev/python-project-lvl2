@@ -271,8 +271,9 @@ def convert_to_file(func, file_difference):
 
 
 def print_file_content():
-    with open(current_directory + "/output.json", 'r') as f:
-        data = json.loads(f)
+    with open(current_directory + "/output.json", 'r', encoding = 'utf-8-sig') as f:
+        data = json.load(f)
+#        data = json.loads(f)
     return data
 
 
