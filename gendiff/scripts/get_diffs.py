@@ -282,15 +282,12 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     result = get_dicts_difference(dict_1, dict_2)
     if formatter == 'stylish':
         convert_to_file(stringify, result)
-        a_file = open(current_directory + "/output.json")
-        a_file.read()
+        return 1
 
  #       print_file_content()
 
     elif formatter == 'plain':
         convert_to_file(get_plain_diff, result)
-        a_file = open(current_directory + "/output.json")
-        a_file.read()
  #       print_file_content()
 
     elif formatter == 'json':
