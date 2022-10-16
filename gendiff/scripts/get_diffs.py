@@ -268,8 +268,9 @@ def convert_to_file(func, file_difference):
             file.writelines(lines[:-1])
         with open(current_directory + "/output.json", 'a') as file:
             file.write('}')
-
         return 1
+    else:
+        return 2
 
 
 
