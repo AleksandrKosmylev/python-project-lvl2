@@ -274,13 +274,14 @@ def convert_to_file(func, file_difference):
 
 def print_file_content():
     return "888"
-  #  with open(current_directory + "/output.json") as f:
-  #          data = f.read()
-#        data = yaml.load(f, Loader=yaml.Loader)
-#        data = json.loads(f)
-#    with open(current_directory + "/output.json", 'r') as a_file:
- #       json.loads(a_file)
-
+"""
+    with open(current_directory + "/output.json") as f:
+            data = f.read()
+        data = yaml.load(f, Loader=yaml.Loader)
+        data = json.loads(f)
+    with open(current_directory + "/output.json", 'r') as a_file:
+        json.loads(a_file)
+"""
 
 
 def generate_diff(path_1, path_2, formatter='stylish'):
