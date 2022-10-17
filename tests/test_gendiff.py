@@ -14,6 +14,7 @@ control_result = {
     'follow': False}
 
 test_directory = os.getcwd()
+path_to_file_1_json = test_directory + "/fixtures/first_stringify/file1.json"
 path_to_file_2_json = test_directory + "/fixtures/first_stringify/file2.json"
 path_stringify_flat_json = test_directory + "/fixtures/first_stringify/test_stringify.json"
 path_to_file_1_1json = test_directory + "/fixtures/second/file1.json"
@@ -22,7 +23,6 @@ path_to_file_1_1yaml = test_directory + "/fixtures/second/file1.yaml"
 path_to_file_2_1yaml = test_directory + "/fixtures/second/file2.yaml"
 path_stringify_json = test_directory + "/fixtures/second/test_stringify.json"
 path_plain_json = test_directory + "/fixtures/second/test_plain.json"
-
 
 
 
