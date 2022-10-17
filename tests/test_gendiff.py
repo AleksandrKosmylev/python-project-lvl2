@@ -4,7 +4,7 @@ from gendiff.scripts.get_diffs import stringify
 from gendiff.scripts.get_diffs import get_plain_diff
 from gendiff.scripts.get_diffs import convert_to_file
 import os
-from gendiff.scripts.get_diffs import output_path
+#from gendiff.scripts.get_diffs import output_path
 
 
 control_result = {
@@ -34,7 +34,7 @@ def test_get_dict_from_file():
 
 def test_stringify_flat_json():
     generate_diff(path_to_file_1_json, path_to_file_2_json)
-    with open(output_path, 'r') as file_1:
+    with open("/gendiff/output.json", 'r') as file_1:
         with open(path_stringify_flat_json, 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
