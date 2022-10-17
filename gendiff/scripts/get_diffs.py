@@ -3,6 +3,7 @@ import json
 import yaml
 import sys
 import os
+
 #sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
 # flake8: noqa: C901
@@ -278,7 +279,7 @@ def convert_to_file(func, file_difference):
 
 def print_file_content():
 #    current_directory = os.getcwd()
-    with open("output.json") as f:
+    with open(output_path) as f:
         data = f.read()
     return data
 #        data = json.loads(f)
