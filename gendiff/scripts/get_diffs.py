@@ -252,7 +252,7 @@ def get_plain_diff(x):
 def convert_to_file(func, file_difference):
     original_stdout = sys.stdout
     current_directory = os.getcwd()
-    output_file = open(current_directory + "output.json", 'w')
+    output_file = open("output.json", 'w')
     sys.stdout = output_file
     func(file_difference)
     output_file.close()
