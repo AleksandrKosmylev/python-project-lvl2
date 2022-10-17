@@ -289,9 +289,9 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     dict_2 = get_dict_from_file(path_2)
     result = get_dicts_difference(dict_1, dict_2)
     if formatter == 'stylish':
-        return '7'
+        return print_file_content()
  #       convert_to_file(stringify, result)
-        print_file_content()
+ #       print_file_content()
 
     elif formatter == 'plain':
   #      convert_to_file(get_plain_diff, result)
