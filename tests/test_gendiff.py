@@ -12,7 +12,7 @@ control_result = {
     'timeout': 50,
     'proxy': '123.234.53.22',
     'follow': False}
-"""
+
 test_directory = os.getcwd()
 path_to_file_1_json = test_directory + "/tests/fixtures/first_stringify/file1.json"
 path_to_file_2_json = test_directory + "/tests/fixtures/first_stringify/file2.json"
@@ -34,7 +34,7 @@ path_to_file_1_1yaml = "tests/fixtures/second/file1.yaml"
 path_to_file_2_1yaml = "tests/fixtures/second/file2.yaml"
 path_stringify_json = "tests/fixtures/second/test_stringify.json"
 path_plain_json = "tests/fixtures/second/test_plain.json"
-
+"""
 
 
 
