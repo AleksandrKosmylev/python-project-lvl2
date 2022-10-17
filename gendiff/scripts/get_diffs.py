@@ -271,9 +271,9 @@ def convert_to_file(func, file_difference):
 
 
 
-
-def print_file_content():
 """
+def print_file_content():
+
     with open(current_directory + "/output.json") as f:
             data = f.read()
         data = yaml.load(f, Loader=yaml.Loader)
