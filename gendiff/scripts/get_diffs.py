@@ -8,7 +8,8 @@ import os
 # flake8: noqa: C901
 
 # current_directory = os.getcwd()
-output_path = current_directory + "/output.json"
+#output_path = current_directory + "/output.json"
+output_path = "gendiff/output.json"
 
 def get_dict_from_file(path_to_file):
     if path_to_file.endswith(".json") is True:
