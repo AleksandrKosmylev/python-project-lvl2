@@ -7,6 +7,9 @@ import os
 
 # flake8: noqa: C901
 
+# current_directory = os.getcwd()
+#output_path = current_directory + "/output.json"
+
 def get_dict_from_file(path_to_file):
     if path_to_file.endswith(".json") is True:
         f = json.load(open(path_to_file))
@@ -273,6 +276,7 @@ def convert_to_file(func, file_difference):
 
 
 def print_file_content():
+    current_directory = os.getcwd()
     with open(current_directory + "/output.json") as f:
         data = f.read()
     return data
@@ -301,5 +305,3 @@ def generate_diff(path_1, path_2, formatter='stylish'):
 
 
 
-current_directory = os.getcwd()
-output_path = current_directory + "/output.json"
