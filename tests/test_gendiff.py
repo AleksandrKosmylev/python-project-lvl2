@@ -4,7 +4,7 @@ from gendiff.scripts.get_diffs import stringify
 from gendiff.scripts.get_diffs import get_plain_diff
 from gendiff.scripts.get_diffs import convert_to_file
 import os
-#from gendiff.scripts.get_diffs import output_path
+
 
 
 control_result = {
@@ -14,6 +14,7 @@ control_result = {
     'follow': False}
 
 test_directory = os.getcwd()
+from gendiff.
 path_to_file_1_json = "tests/fixtures/first_stringify/file1.json"
 path_to_file_2_json = test_directory + "/fixtures/first_stringify/file2.json"
 path_stringify_flat_json = test_directory + "/fixtures/first_stringify/test_stringify.json"
