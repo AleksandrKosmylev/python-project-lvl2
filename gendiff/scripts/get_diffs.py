@@ -279,14 +279,9 @@ def convert_to_file(func, file_difference):
 
 def print_file_content():
     f = open("output.json",'r')
-#    current_directory = os.getcwd()
-#    with open("output.json") as f:
-#        data = json.load(f)
     data = f.read()
     f.close()
     return data
-
-
 
 
 def generate_diff(path_1, path_2, formatter='stylish'):
