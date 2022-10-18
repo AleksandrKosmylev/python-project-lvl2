@@ -47,7 +47,7 @@ def test_stringify_flat_json():
 
 def test_stringify_json():
     generate_diff(path_to_file_1_1json, path_to_file_2_1json)
-    with open(output_path, 'r') as file_1:
+    with open("output.json", 'r') as file_1:
         with open(path_stringify_json, 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
@@ -56,7 +56,7 @@ def test_stringify_json():
 
 def test_stringify_yaml():
     generate_diff(path_to_file_1_1yaml, path_to_file_2_1yaml)
-    with open(output_path, 'r') as file_1:
+    with open("output.json", 'r') as file_1:
         with open(path_stringify_json, 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
@@ -65,11 +65,11 @@ def test_stringify_yaml():
 
 def test_plain():
     generate_diff(path_to_file_1_1yaml, path_to_file_2_1yaml, "plain")
-    with open(output_path, 'r') as file_1:
+    with open("output.json", 'r') as file_1:
         with open(path_plain_json, 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
             try:
                 assert data_1 == data_2
             finally:
-                os.remove(output_path)
+                os.remove("output.json")
