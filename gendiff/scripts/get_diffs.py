@@ -294,7 +294,8 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     result = get_dicts_difference(dict_1, dict_2)
     if formatter == 'stylish':
         convert_to_file(stringify, result)
-        return print_file_content()
+        return "1"
+ #       return print_file_content()
  #       convert_to_file(stringify, result)
  #       print_file_content()
 
