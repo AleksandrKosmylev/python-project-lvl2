@@ -69,7 +69,8 @@ def test_plain():
         with open(path_plain_json, 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
-            try:
-                assert data_1 == data_2
-            finally:
-                os.remove("output.json")
+            assert data_1 == data_2
+#            try:
+ #               assert data_1 == data_2
+ #           finally:
+ #               os.remove("output.json")

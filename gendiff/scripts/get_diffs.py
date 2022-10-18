@@ -296,14 +296,9 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     if formatter == 'stylish':
         convert_to_file(stringify, result)
         return print_file_content()
- #       convert_to_file(stringify, result)
- #       print_file_content()
-
     elif formatter == 'plain':
-  #      convert_to_file(get_plain_diff, result)
+        convert_to_file(get_plain_diff, result)
         return print_file_content()
-
-
     elif formatter == 'json':
         jsonStr = json.dumps(result)
         return jsonStr
