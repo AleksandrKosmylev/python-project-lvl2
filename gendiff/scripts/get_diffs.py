@@ -279,7 +279,7 @@ def convert_to_file(func, file_difference):
 
 def print_file_content():
 #    current_directory = os.getcwd()
-    with open(output_path) as f:
+    with open("output.json") as f:
         data = f.read()
     return data
 #        data = json.loads(f)
