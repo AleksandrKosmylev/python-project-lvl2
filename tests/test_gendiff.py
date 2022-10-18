@@ -17,13 +17,13 @@ test_directory = os.getcwd()
 
 path_to_file_1_json = "tests/fixtures/first_stringify/file1.json"
 path_to_file_2_json = "tests/fixtures/first_stringify/file2.json"
-path_stringify_flat_json = test_directory + "/fixtures/first_stringify/test_stringify.json"
-path_to_file_1_1json = test_directory + "/fixtures/second/file1.json"
-path_to_file_2_1json = test_directory + "/fixtures/second/file2.json"
-path_to_file_1_1yaml = test_directory + "/fixtures/second/file1.yaml"
-path_to_file_2_1yaml = test_directory + "/fixtures/second/file2.yaml"
-path_stringify_json = test_directory + "/fixtures/second/test_stringify.json"
-path_plain_json = test_directory + "/fixtures/second/test_plain.json"
+path_stringify_flat_json = "tests/fixtures/first_stringify/test_stringify.json"
+path_to_file_1_1json = "tests/fixtures/second/file1.json"
+path_to_file_2_1json = "tests/fixtures/second/file2.json"
+path_to_file_1_1yaml = "tests/fixtures/second/file1.yaml"
+path_to_file_2_1yaml = "tests/fixtures/second/file2.yaml"
+path_stringify_json = "tests/fixtures/second/test_stringify.json"
+path_plain_json ="tests/fixtures/second/test_plain.json"
 
 
 
@@ -35,14 +35,14 @@ def test_get_dict_from_file():
 
 def test_stringify_flat_json():
     generate_diff(path_to_file_1_json, path_to_file_2_json)
-    with open("tests/fixtures/first_stringify/file1.json", 'r') as file_1:
+    with open("output.json", 'r') as file_1:
         with open(path_stringify_flat_json, 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
             try:
                 assert data_1 == data_2
             finally:
-                os.remove(output_path)
+                os.remove("output.json")
 
 
 def test_stringify_json():
