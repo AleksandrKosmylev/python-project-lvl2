@@ -19,6 +19,9 @@ def get_dict_from_file(path_to_file):
     elif path_to_file.endswith(".yaml") is True:
         f = yaml.load(open(path_to_file), Loader=yaml.FullLoader)
         return dict(f.items())
+    elif path_to_file.endswith(".yml") is True:
+        f = yaml.load(open(path_to_file), Loader=yaml.FullLoader)
+        return dict(f.items())
     else:
         return {}
 

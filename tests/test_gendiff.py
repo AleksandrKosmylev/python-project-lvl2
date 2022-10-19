@@ -15,8 +15,11 @@ control_result = {
 
 test_directory = os.getcwd()
 
-path_to_file_1_json = "tests/fixtures/first_stringify/file1.json"
-path_to_file_2_json = "tests/fixtures/first_stringify/file2.json"
+path_to_file_1_json = "tests/fixtures_hexlet/file1.json"
+path_to_file_2_json = "tests/fixtures_hexlet/file2.json"
+
+#path_to_file_1_json = "tests/fixtures/first_stringify/file1.json"
+#path_to_file_2_json = "tests/fixtures/first_stringify/file2.json"
 path_stringify_flat_json = "tests/fixtures/first_stringify/test_stringify.json"
 path_to_file_1_1json = "tests/fixtures/second/file1.json"
 path_to_file_2_1json = "tests/fixtures/second/file2.json"
