@@ -78,6 +78,7 @@ def get_dicts_difference(dict_1, dict_2):
 
 def stringify(x, spaces='  '):
     def walk(value, acc):
+#        acc +=1
         tabulation = spaces * acc
         keys_of_tree = ['status', 'value', 'childs', 'old_value']
         if type(value) is dict:
@@ -99,7 +100,7 @@ def stringify(x, spaces='  '):
                         # list(value[key_of_dict].values())[2] == 'childs': ""
                         # (list(value[key_of_dict].values())[1]) == 'value': ""
                         if status_value == 'was added' and list(value[key_of_dict].values())[2] == '':
-#                            print("3")
+                            #print("3")
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
                         # check children: if childs exist.
@@ -119,22 +120,26 @@ def stringify(x, spaces='  '):
                         elif status_value == 'no changes' and list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}{sigh(status_value)}{key_of_dict}:')
                             walk(list(value[key_of_dict].values())[2], acc+1)
-  #                          print(tabulation + '3}')
+#                            print(tabulation + '3}')
                         elif status_value == 'was updated':
                             #print("-->")
                             if list(value[key_of_dict].values())[2] == '[**]':
                                 print(f'{tabulation}- {key_of_dict}: ', " {")
                                 walk(list(value[key_of_dict].values())[3], acc+1)
-  #                              print(tabulation + '4}')
+#                                print(tabulation + '4}')
                                 print(f'{tabulation}+ {key_of_dict}: ')
                                 walk(list(value[key_of_dict].values())[1], acc+1)
- #                               print(tabulation + '5}')
+#                                print(tabulation + '5}')
                             elif list(value[key_of_dict].values())[2] == '[_*]':
-                                print(f'{tabulation}- {key_of_dict}: ',end='')
+                                print(f'{tabulation}- {key_of_dict}: ', end='')
                                 print(list(value[key_of_dict].values())[3])
                                 print(f'{tabulation}+ {key_of_dict}:', "{")
+                                acc += 1
+                                tabulation = spaces * acc
                                 walk(list(value[key_of_dict].values())[1], acc+1)
- #                               print(tabulation + '6}')
+                                acc -= 1
+                                tabulation = spaces * acc
+#                                print(tabulation + '6}')
                             elif list(value[key_of_dict].values())[2] == '[*_]':
                                 print(f'{tabulation}- {key_of_dict}:', "{")
                                 acc += 1
@@ -168,7 +173,7 @@ def stringify(x, spaces='  '):
                             acc += 1
                             tabulation = spaces * acc
                             walk(list(value[key_of_dict].values())[2], acc+1)
- #                           print(tabulation + '8}')
+#                            print(tabulation + '8}')
                             acc -=1
                             tabulation = spaces * acc
                     else:
@@ -179,9 +184,12 @@ def stringify(x, spaces='  '):
                     print(f'{tabulation}{key_of_dict}:',value[key_of_dict])
                     acc -= 1
                     tabulation = spaces * acc
+
+
         acc -= 1
         tabulation = spaces * acc
         print(tabulation + '}')
+    #print("end")
     print("{")
     return walk(x, 1)
 
