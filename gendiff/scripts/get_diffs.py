@@ -157,7 +157,7 @@ def stringify(x, spaces='  '):
                                     print(list(value[key_of_dict].values())[3],sep="")
                                 else:
                                     print("",list(value[key_of_dict].values())[3])
-                                print(f'{tabulation}+ {key_of_dict}:', end=' ')
+                                print(f'{tabulation}+ {key_of_dict}:', end='!')
                                 if list(value[key_of_dict].values())[1] == "":
                                     print("", list(value[key_of_dict].values())[1],sep="")
                                 else:
