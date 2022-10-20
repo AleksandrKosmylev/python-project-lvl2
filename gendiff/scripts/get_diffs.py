@@ -102,7 +102,7 @@ def stringify(x, spaces='  '):
                         if status_value == 'was added' and list(value[key_of_dict].values())[2] == '':
                             #print("3")
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
-                            print(list(value[key_of_dict].values())[1])
+                            print("",list(value[key_of_dict].values())[1])
                         # check children: if childs exist.
                         # list(value[key_of_dict].values())[2] == 'childs': "{, }"
                         elif status_value == 'was added' and list(value[key_of_dict].values())[2] != '':
@@ -132,7 +132,7 @@ def stringify(x, spaces='  '):
 #                                print(tabulation + '5}')
                             elif list(value[key_of_dict].values())[2] == '[_*]':
                                 print(f'{tabulation}- {key_of_dict}: ', end='')
-                                print(list(value[key_of_dict].values())[3])
+                                print("",list(value[key_of_dict].values())[3])
                                 print(f'{tabulation}+ {key_of_dict}:', "{")
                                 acc += 1
                                 tabulation = spaces * acc
@@ -150,7 +150,7 @@ def stringify(x, spaces='  '):
                                 tabulation = spaces * acc
                                 #print(tabulation + '7}')
                                 print(f'{tabulation}+ {key_of_dict}: ', end='')
-                                print(list(value[key_of_dict].values())[1])
+                                print("",list(value[key_of_dict].values())[1])
                             elif list(value[key_of_dict].values())[2] == '[__]':
                                 print(f'{tabulation}- {key_of_dict}:', end='')
                                 if list(value[key_of_dict].values())[3] == "":
@@ -167,7 +167,7 @@ def stringify(x, spaces='  '):
                             print(f'{tabulation}+ {key_of_dict} :')
                         elif status_value == 'was removed' and list(value[key_of_dict].values())[2] == '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
-                            print(list(value[key_of_dict].values())[3])
+                            print("",list(value[key_of_dict].values())[3])
                         elif status_value == 'was removed' and list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}:', "{")
                             acc += 1
