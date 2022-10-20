@@ -157,9 +157,9 @@ def stringify(x, spaces='  '):
                                     print(list(value[key_of_dict].values())[3],sep="")
                                 else:
                                     print("",list(value[key_of_dict].values())[3])
-                                print(f'{tabulation}+ {key_of_dict}:', end='!')
+                                print(f'{tabulation}+ {key_of_dict}:', end='')
                                 if list(value[key_of_dict].values())[1] == "":
-                                    print("", list(value[key_of_dict].values())[1],sep="")
+                                    print(list(value[key_of_dict].values())[1])
                                 else:
                                     print("",list(value[key_of_dict].values())[1])
                         elif status_value == 'was updated' and list(value[key_of_dict].values())[2] != '':
