@@ -154,7 +154,8 @@ def stringify(x, spaces='  '):
                             elif list(value[key_of_dict].values())[2] == '[__]':
                                 print(f'{tabulation}- {key_of_dict}:', end='')
                                 if list(value[key_of_dict].values())[3] == "":
-                                    print(list(value[key_of_dict].values())[3],sep="")
+#                                    print(list(value[key_of_dict].values())[3],sep="")
+                                    print(" ")
                                 else:
                                     print("",list(value[key_of_dict].values())[3])
                                 print(f'{tabulation}+ {key_of_dict}:', end='')
