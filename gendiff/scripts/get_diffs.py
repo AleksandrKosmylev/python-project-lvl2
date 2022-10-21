@@ -233,7 +233,7 @@ def get_plain_diff(x):
                             walk(list(value[key_of_dict].values())[1], acc)
                             acc = acc[:-1]
                         elif list(value[key_of_dict].values())[2] == '[_*]':
-                            acc.append(str(key_of_dict) + '.')
+                            acc.append(str(key_of_dict))
                             print("Property", repr(''.join(acc)), 'was updated. From', end=' ')
                             print(repr(list(value[key_of_dict].values())[3]), 'to', end=' ')
                             print('[complex value]')
