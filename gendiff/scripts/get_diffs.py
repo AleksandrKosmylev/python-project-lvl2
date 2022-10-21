@@ -288,7 +288,7 @@ def convert_to_file(func, file_difference):
 
 def print_file_content():
     f = open("output.json",'r')
-    data = f.read()
+    data = f.read().splitlines()
     f.close()
     return data
 
