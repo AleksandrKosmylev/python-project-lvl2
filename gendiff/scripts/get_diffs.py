@@ -295,6 +295,7 @@ def print_file_content():
     f = open("output.json",'r')
     data = f.read()
     f.close()
+    print(data)
     return data
 
 
