@@ -261,7 +261,6 @@ def get_plain_diff(x):
 
 def convert_to_file(func, file_difference):
     original_stdout = sys.stdout
-    current_directory = os.getcwd()
     output_file = open("output.json", 'w')
     sys.stdout = output_file
     func(file_difference)
@@ -282,6 +281,12 @@ def convert_to_file(func, file_difference):
             file.writelines(lines[:-1])
         with open("output.json", 'a') as file:
             file.write('}')
+    elif func == get_plain_diff:
+        with open("output.json", 'rb+') as filehandle:
+            filehandle.seek(-1, os.SEEK_END)
+            filehandle.truncate()
+
+
 
 
 
