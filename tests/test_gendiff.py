@@ -1,8 +1,5 @@
-from gendiff.scripts.get_diffs import get_dict_from_file, get_dicts_difference
+from gendiff.scripts.get_diffs import get_dict_from_file
 from gendiff.scripts.gendiff import generate_diff
-from gendiff.scripts.get_diffs import stringify
-from gendiff.scripts.get_diffs import get_plain_diff
-from gendiff.scripts.get_diffs import convert_to_file
 import os
 
 
