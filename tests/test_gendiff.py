@@ -3,7 +3,6 @@ from gendiff.scripts.gendiff import generate_diff
 import os
 
 
-
 control_result = {
     'host': 'hexlet.io',
     'timeout': 50,
@@ -15,18 +14,15 @@ test_directory = os.getcwd()
 path_to_file_1_json = "tests/fixtures_hexlet/file1.json"
 path_to_file_2_json = "tests/fixtures_hexlet/file2.json"
 
-#path_to_file_1_json = "tests/fixtures/first_stringify/file1.json"
-#path_to_file_2_json = "tests/fixtures/first_stringify/file2.json"
+# path_to_file_1_json = "tests/fixtures/first_stringify/file1.json"
+# path_to_file_2_json = "tests/fixtures/first_stringify/file2.json"
 path_stringify_flat_json = "tests/fixtures/first_stringify/test_stringify.json"
 path_to_file_1_1json = "tests/fixtures/second/file1.json"
 path_to_file_2_1json = "tests/fixtures/second/file2.json"
 path_to_file_1_1yaml = "tests/fixtures/second/file1.yaml"
 path_to_file_2_1yaml = "tests/fixtures/second/file2.yaml"
 path_stringify_json = "tests/fixtures/second/test_stringify.json"
-path_plain_json ="tests/fixtures/second/test_plain.json"
-
-
-
+path_plain_json = "tests/fixtures/second/test_plain.json"
 
 
 def test_get_dict_from_file():
@@ -51,7 +47,7 @@ def test_stringify_json():
         with open(path_stringify_json, 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
-            assert data_1 == data_2 , '{0} != {1}'.format(data_1, data_2)
+            assert data_1 == data_2, '{0} != {1}'.format(data_1, data_2)
 
 
 def test_stringify_yaml():
@@ -60,7 +56,7 @@ def test_stringify_yaml():
         with open(path_stringify_json, 'r') as file_2:
             data_1 = file_1.read()
             data_2 = file_2.read()
-            assert data_1 == data_2 , '{0} != {1}'.format(data_1, data_2)
+            assert data_1 == data_2, '{0} != {1}'.format(data_1, data_2)
 
 
 def test_plain():
@@ -71,6 +67,6 @@ def test_plain():
             data_2 = file_2.read()
             assert data_1 == data_2
 #            try:
- #               assert data_1 == data_2
- #           finally:
- #               os.remove("output.json")
+#               assert data_1 == data_2
+#           finally:
+#               os.remove("output.json")
