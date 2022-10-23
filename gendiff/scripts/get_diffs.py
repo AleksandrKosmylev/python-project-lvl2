@@ -311,6 +311,7 @@ def generate_diff(path_1, path_2, formatter='stylish'):
         return print_file_content()
     elif formatter == 'json':
         jsonStr = json.dumps(result)
+        print(jsonStr)
         return jsonStr
 
 
