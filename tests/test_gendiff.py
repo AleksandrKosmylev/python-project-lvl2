@@ -11,11 +11,11 @@ control_result = {
 
 # test_directory = os.getcwd()
 
-path_to_file_1_json = "fixtures/flat/file1.json"
-path_to_file_2_json = "fixtures/flat/file2.json"
+# path_to_file_1_json = "fixtures/flat/file1.json"
+# path_to_file_2_json = "fixtures/flat/file2.json"
 
-# path_to_file_1_json = "tests/fixtures/flat/file1.json"
-# path_to_file_2_json = "tests/fixtures/flat/file2.json"
+path_to_file_1_json = "tests/fixtures/flat/file1.json"
+path_to_file_2_json = "tests/fixtures/flat/file2.json"
 path_stringify_flat_json = "fixtures/flat/test_stringify.json"
 path_to_file_1_1json = "fixtures/nested/file1.json"
 path_to_file_2_1json = "fixtures/nested/file2.json"
