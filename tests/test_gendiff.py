@@ -35,6 +35,7 @@ def test_get_dict_from_file():
 
 def test_stringify_flat_json():
     generate_diff(path_to_file_1_json, path_to_file_2_json)
+    print(os.getcwd())
     with open("output.json", 'r') as file_1:
         with open(path_stringify_flat_json, 'r') as file_2:
             data_1 = file_1.read()
