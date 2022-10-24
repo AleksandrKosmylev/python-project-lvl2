@@ -14,11 +14,11 @@ test_directory = os.getcwd()
 print(os.getcwd())
 print("11")
 print("!!!", Path.cwd())
-# path_to_file_1_json = "fixtures/flat/file1.json"
-# path_to_file_2_json = "fixtures/flat/file2.json"
+path_to_file_1_json = "fixtures/flat/file1.json"
+path_to_file_2_json = "fixtures/flat/file2.json"
 
-path_to_file_1_json = test_directory + "/file1.json"
-path_to_file_2_json = test_directory + "/file2.json"
+# path_to_file_1_json = test_directory + "/file1.json"
+# path_to_file_2_json = test_directory + "/file2.json"
 path_stringify_flat_json = "./tests/fixtures/flat/test_stringify.json"
 path_to_file_1_1json = "./tests/fixtures/nested/file1.json"
 path_to_file_2_1json = "./tests/fixtures/nested/file2.json"
