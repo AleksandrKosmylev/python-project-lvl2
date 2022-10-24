@@ -11,18 +11,18 @@ control_result = {
 
 # test_directory = os.getcwd()
 
-path_to_file_1_json = "fixtures/second/file1.json"
+path_to_file_1_json = "fixtures/flat/file1.json"
 path_to_file_2_json = "tests/fixtures_hexlet/file2.json"
 
-# path_to_file_1_json = "tests/fixtures/first_stringify/file1.json"
-# path_to_file_2_json = "tests/fixtures/first_stringify/file2.json"
-path_stringify_flat_json = "tests/fixtures/first_stringify/test_stringify.json"
-path_to_file_1_1json = "tests/fixtures/second/file1.json"
-path_to_file_2_1json = "tests/fixtures/second/file2.json"
-path_to_file_1_1yaml = "tests/fixtures/second/file1.yaml"
-path_to_file_2_1yaml = "tests/fixtures/second/file2.yaml"
-path_stringify_json = "tests/fixtures/second/test_stringify.json"
-path_plain_json = "tests/fixtures/second/test_plain.json"
+# path_to_file_1_json = "tests/fixtures/flat/file1.json"
+# path_to_file_2_json = "tests/fixtures/flat/file2.json"
+path_stringify_flat_json = "tests/fixtures/flat/test_stringify.json"
+path_to_file_1_1json = "tests/fixtures/nested/file1.json"
+path_to_file_2_1json = "tests/fixtures/nested/file2.json"
+path_to_file_1_1yaml = "tests/fixtures/nested/file1.yaml"
+path_to_file_2_1yaml = "tests/fixtures/nested/file2.yaml"
+path_stringify_json = "tests/fixtures/nested/test_stringify.json"
+path_plain_json = "tests/fixtures/nested/test_plain.json"
 
 
 def test_get_dict_from_file():
