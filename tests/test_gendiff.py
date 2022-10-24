@@ -26,7 +26,7 @@ path_plain_json = "tests/fixtures/nested/test_plain.json"
 
 
 def test_get_dict_from_file():
-#   assert get_dict_from_file(path_to_file_1_json) == control_result
+    # assert get_dict_from_file(path_to_file_1_json) == control_result
     assert get_dict_from_file(path_to_file_1_json) == control_result
 
 
