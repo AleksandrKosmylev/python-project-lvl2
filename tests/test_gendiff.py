@@ -9,7 +9,7 @@ control_result = {
     'proxy': '123.234.53.22',
     'follow': False}
 
-#test_directory = os.getcwd()
+# test_directory = os.getcwd()
 
 path_to_file_1_json = "fixtures/second/file1.json"
 path_to_file_2_json = "tests/fixtures_hexlet/file2.json"
@@ -26,7 +26,7 @@ path_plain_json = "tests/fixtures/second/test_plain.json"
 
 
 def test_get_dict_from_file():
-#    assert get_dict_from_file(path_to_file_1_json) == control_result
+# assert get_dict_from_file(path_to_file_1_json) == control_result
     assert get_dict_from_file(path_to_file_1_json) == control_result
 
 
