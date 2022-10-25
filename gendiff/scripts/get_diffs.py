@@ -128,7 +128,11 @@ def stringify(x, spaces='  '):
                         # (list(value[key_of_dict].values())[1]) == 'value': ""
                         if status_value == 'was added' and\
                                 list(value[key_of_dict].values())[2] == '':
-                            print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
+                            print(
+                                f'{tabulation}'
+                                f'{sigh(status_value)}'
+                                f' {key_of_dict}: ',
+                                  end='')
                             print(list(value[key_of_dict].values())[1])
                         # check children: if childs exist.
                         # list(value[key_of_dict].values())[2] == 'childs': "{, }"
