@@ -3,7 +3,7 @@ import yaml
 import sys
 import os
 
-
+# flake8: noqa: C901
 output_path = "gendiff/output.json"
 
 
@@ -133,21 +133,27 @@ def stringify(x, spaces='  '):
                                   end='')
                             print(list(value[key_of_dict].values())[1])
                         # check children: if childs exist.
-                        # list(value[key_of_dict].values())[2] == 'childs': "{, }"
+                        # list(value[key_of_dict].values())[2] ==
+                        # 'childs': "{, }"
                         elif status_value == 'was added' and\
                                 list(value[key_of_dict].values())[2] != '':
-                            print(f'{tabulation}{sigh(status_value)} {key_of_dict}:', "{")
+                            print(f'{tabulation}'
+                                  f'{sigh(status_value)} {key_of_dict}:', "{")
                             acc += 1
                             walk(list(value[key_of_dict].values())[2], acc + 1)
                             tabulation = spaces * acc
                             acc -= 1
                         elif status_value == 'no changes' and\
                                 list(value[key_of_dict].values())[2] == '':
-                            print(f' {tabulation}{sigh(status_value)}{key_of_dict}: ', end='')
+                            print(f' {tabulation}'
+                                  f'{sigh(status_value)}'
+                                  f'{key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
                         elif status_value == 'no changes' and\
                                 list(value[key_of_dict].values())[2] != '':
-                            print(f'{tabulation}{sigh(status_value)}{key_of_dict}:')
+                            print(f'{tabulation}'
+                                  f'{sigh(status_value)}'
+                                  f'{key_of_dict}:')
                             walk(list(value[key_of_dict].values())[2], acc + 1)
                         elif status_value == 'was updated':
                             if list(value[key_of_dict].values())[2] == '[**]':
