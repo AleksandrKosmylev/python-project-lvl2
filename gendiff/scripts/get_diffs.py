@@ -32,7 +32,7 @@ def sigh(mark):
         return ' '
 
 
-def get_dicts_difference(dict_1, dict_2):
+def get_dicts_diff(dict_1, dict_2):
     result = {}
     a = dict_1
     b = dict_2
@@ -55,7 +55,7 @@ def get_dicts_difference(dict_1, dict_2):
                 result[i] = {'status': 'was added', 'value': b[i], 'childs': "", "old_value": ""}
         elif i in keys1 and i in keys2:
             if (type(a[i]) is dict) is True and (type(b[i]) is dict) is True:
-                result[i] = (get_dicts_difference(a[i], b[i]))
+                result[i] = (get_dicts_diff(a[i], b[i]))
             elif (type(a[i]) is dict) is False or (type(b[i]) is dict) is False:
                 if a[i] != b[i]:
                     if (type(a[i]) is dict) and (type(b[i]) is dict):
@@ -271,7 +271,7 @@ def print_file_content():
 def generate_diff(path_1, path_2, formatter='stylish'):
     dict_1 = get_dict_from_file(path_1)
     dict_2 = get_dict_from_file(path_2)
-    result = get_dicts_difference(dict_1, dict_2)
+    result = get_dicts_diff(dict_1, dict_2)
     if formatter == 'stylish':
         convert_to_file(stringify, result)
         return print_file_content()
