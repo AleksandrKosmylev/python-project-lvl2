@@ -55,7 +55,11 @@ def get_dicts_diff(dict_1, dict_2):
                     "old_value": a[i]
                 }
             elif type(a[i]) is not dict:
-                result[i] = {'status': 'was removed', 'value': "", 'childs': "", "old_value": a[i]}
+                result[i] = {
+                    'status': 'was removed',
+                    'value': "", 'childs': "",
+                    "old_value": a[i]
+                }
         elif i in keys2 and i not in keys1:
             if type(b[i]) is dict:
                 result[i] = {
@@ -90,7 +94,12 @@ def get_dicts_diff(dict_1, dict_2):
                                      'value': b[i], 'childs': '[__]',
                                      "old_value": a[i]}
                 else:
-                    result[i] = {'status': 'no changes', 'value': b[i], 'childs': "", "old_value": a[i]}
+                    result[i] = {
+                        'status': 'no changes',
+                        'value': b[i],
+                        'childs': "",
+                        "old_value": a[i]
+                    }
     return result
 
 
