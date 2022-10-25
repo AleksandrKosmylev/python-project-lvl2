@@ -126,21 +126,25 @@ def stringify(x, spaces='  '):
                         # check children: if no childs.
                         # list(value[key_of_dict].values())[2] == 'childs': ""
                         # (list(value[key_of_dict].values())[1]) == 'value': ""
-                        if status_value == 'was added' and list(value[key_of_dict].values())[2] == '':
+                        if status_value == 'was added' and\
+                                list(value[key_of_dict].values())[2] == '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
                         # check children: if childs exist.
                         # list(value[key_of_dict].values())[2] == 'childs': "{, }"
-                        elif status_value == 'was added' and list(value[key_of_dict].values())[2] != '':
+                        elif status_value == 'was added' and\
+                                list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}:', "{")
                             acc += 1
                             walk(list(value[key_of_dict].values())[2], acc + 1)
                             tabulation = spaces * acc
                             acc -= 1
-                        elif status_value == 'no changes' and list(value[key_of_dict].values())[2] == '':
+                        elif status_value == 'no changes' and\
+                                list(value[key_of_dict].values())[2] == '':
                             print(f' {tabulation}{sigh(status_value)}{key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
-                        elif status_value == 'no changes' and list(value[key_of_dict].values())[2] != '':
+                        elif status_value == 'no changes' and\
+                                list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}{sigh(status_value)}{key_of_dict}:')
                             walk(list(value[key_of_dict].values())[2], acc + 1)
                         elif status_value == 'was updated':
@@ -176,13 +180,16 @@ def stringify(x, spaces='  '):
                                     print(" ")
                                 else:
                                     print("", list(value[key_of_dict].values())[1])
-                        elif status_value == 'was updated' and list(value[key_of_dict].values())[2] != '':
+                        elif status_value == 'was updated' and\
+                                list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}- {key_of_dict} :')
                             print(f'{tabulation}+ {key_of_dict} :')
-                        elif status_value == 'was removed' and list(value[key_of_dict].values())[2] == '':
+                        elif status_value == 'was removed' and\
+                                list(value[key_of_dict].values())[2] == '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[3])
-                        elif status_value == 'was removed' and list(value[key_of_dict].values())[2] != '':
+                        elif status_value == 'was removed' and\
+                                list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}:', "{")
                             acc += 1
                             walk(list(value[key_of_dict].values())[2], acc + 1)
