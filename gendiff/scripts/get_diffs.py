@@ -100,7 +100,7 @@ def stringify(x, spaces='  '):
                         elif status_value == 'was added' and list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}:', "{")
                             acc += 1
-                            walk(list(value[key_of_dict].values())[2], acc+1)
+                            walk(list(value[key_of_dict].values())[2], acc + 1)
                             tabulation = spaces * acc
                             acc -= 1
                         elif status_value == 'no changes' and list(value[key_of_dict].values())[2] == '':
