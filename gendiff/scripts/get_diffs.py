@@ -1,16 +1,13 @@
-import codecs
 import json
 import yaml
 import sys
 import os
 
-#sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
+# sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 # flake8: noqa: C901
-
-# current_directory = os.getcwd()
-#output_path = current_directory + "/output.json"
 output_path = "gendiff/output.json"
+
 
 def get_dict_from_file(path_to_file):
     if path_to_file.endswith(".json") is True:
@@ -78,7 +75,6 @@ def get_dicts_difference(dict_1, dict_2):
 
 def stringify(x, spaces='  '):
     def walk(value, acc):
-#        acc +=1
         tabulation = spaces * acc
         keys_of_tree = ['status', 'value', 'childs', 'old_value']
         if type(value) is dict:
@@ -89,7 +85,6 @@ def stringify(x, spaces='  '):
                         tabulation = spaces * acc
                         print(f'{tabulation}{key_of_dict}:', "{")
                         walk(value[key_of_dict], acc+1)
-#                        print(tabulation + '1}')
                         acc -= 1
                         tabulation = spaces * acc
                     elif keys_of_tree == list(value[key_of_dict].keys()):
@@ -111,25 +106,19 @@ def stringify(x, spaces='  '):
                             tabulation = spaces * acc
                             walk(list(value[key_of_dict].values())[2], acc+1)
                             tabulation = spaces * acc
-#                            print(tabulation + '2}')
                             acc -=1
-                            #print(tabulation + '!2}')
                         elif status_value == 'no changes' and list(value[key_of_dict].values())[2] == '':
                             print(f' {tabulation}{sigh(status_value)}{key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
                         elif status_value == 'no changes' and list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}{sigh(status_value)}{key_of_dict}:')
                             walk(list(value[key_of_dict].values())[2], acc+1)
-#                            print(tabulation + '3}')
                         elif status_value == 'was updated':
-                            #print("-->")
                             if list(value[key_of_dict].values())[2] == '[**]':
                                 print(f'{tabulation}- {key_of_dict}: ', " {")
                                 walk(list(value[key_of_dict].values())[3], acc+1)
-#                                print(tabulation + '4}')
                                 print(f'{tabulation}+ {key_of_dict}: ')
                                 walk(list(value[key_of_dict].values())[1], acc+1)
-#                                print(tabulation + '5}')
                             elif list(value[key_of_dict].values())[2] == '[_*]':
                                 print(f'{tabulation}- {key_of_dict}: ', end='')
                                 print(list(value[key_of_dict].values())[3])
@@ -139,13 +128,11 @@ def stringify(x, spaces='  '):
                                 walk(list(value[key_of_dict].values())[1], acc+1)
                                 acc -= 1
                                 tabulation = spaces * acc
-#                                print(tabulation + '6}')
                             elif list(value[key_of_dict].values())[2] == '[*_]':
                                 print(f'{tabulation}- {key_of_dict}:', "{")
                                 acc += 1
                                 tabulation = spaces * acc
                                 walk(list(value[key_of_dict].values())[3], acc +1)
-#                                print(tabulation + '7}')
                                 acc -= 1
                                 tabulation = spaces * acc
                                 #print(tabulation + '7}')
@@ -154,13 +141,11 @@ def stringify(x, spaces='  '):
                             elif list(value[key_of_dict].values())[2] == '[__]':
                                 print(f'{tabulation}- {key_of_dict}:', end='')
                                 if list(value[key_of_dict].values())[3] == "":
-#                                    print(list(value[key_of_dict].values())[3],sep="")
                                     print(" ")
                                 else:
                                     print("",list(value[key_of_dict].values())[3])
                                 print(f'{tabulation}+ {key_of_dict}:', end='')
                                 if list(value[key_of_dict].values())[1] == "":
-#                                    print(list(value[key_of_dict].values())[1])
                                     print(" ")
                                 else:
                                     print("",list(value[key_of_dict].values())[1])
@@ -175,7 +160,6 @@ def stringify(x, spaces='  '):
                             acc += 1
                             tabulation = spaces * acc
                             walk(list(value[key_of_dict].values())[2], acc+1)
-#                            print(tabulation + '8}')
                             acc -=1
                             tabulation = spaces * acc
                     else:
@@ -191,7 +175,6 @@ def stringify(x, spaces='  '):
         acc -= 1
         tabulation = spaces * acc
         print(tabulation + '}')
-    #print("end")
     print("{")
     return walk(x, 1)
 
@@ -285,10 +268,6 @@ def convert_to_file(func, file_difference):
         with open("output.json", 'rb+') as filehandle:
             filehandle.seek(-1, os.SEEK_END)
             filehandle.truncate()
-
-
-
-
 
 
 def print_file_content():
