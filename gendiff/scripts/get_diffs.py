@@ -4,7 +4,6 @@ import sys
 import os
 
 
-# sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 # flake8: noqa: C901
 output_path = "gendiff/output.json"
 
@@ -95,7 +94,6 @@ def stringify(x, spaces='  '):
                         # list(value[key_of_dict].values())[2] == 'childs': ""
                         # (list(value[key_of_dict].values())[1]) == 'value': ""
                         if status_value == 'was added' and list(value[key_of_dict].values())[2] == '':
-                            #print("3")
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
                         # check children: if childs exist.
@@ -106,7 +104,7 @@ def stringify(x, spaces='  '):
                             tabulation = spaces * acc
                             walk(list(value[key_of_dict].values())[2], acc+1)
                             tabulation = spaces * acc
-                            acc -=1
+                            acc -= 1
                         elif status_value == 'no changes' and list(value[key_of_dict].values())[2] == '':
                             print(f' {tabulation}{sigh(status_value)}{key_of_dict}: ', end='')
                             print(list(value[key_of_dict].values())[1])
@@ -132,10 +130,9 @@ def stringify(x, spaces='  '):
                                 print(f'{tabulation}- {key_of_dict}:', "{")
                                 acc += 1
                                 tabulation = spaces * acc
-                                walk(list(value[key_of_dict].values())[3], acc +1)
+                                walk(list(value[key_of_dict].values())[3], acc + 1)
                                 acc -= 1
                                 tabulation = spaces * acc
-                                #print(tabulation + '7}')
                                 print(f'{tabulation}+ {key_of_dict}: ', end='')
                                 print(list(value[key_of_dict].values())[1])
                             elif list(value[key_of_dict].values())[2] == '[__]':
@@ -143,12 +140,12 @@ def stringify(x, spaces='  '):
                                 if list(value[key_of_dict].values())[3] == "":
                                     print(" ")
                                 else:
-                                    print("",list(value[key_of_dict].values())[3])
+                                    print("", list(value[key_of_dict].values())[3])
                                 print(f'{tabulation}+ {key_of_dict}:', end='')
                                 if list(value[key_of_dict].values())[1] == "":
                                     print(" ")
                                 else:
-                                    print("",list(value[key_of_dict].values())[1])
+                                    print("", list(value[key_of_dict].values())[1])
                         elif status_value == 'was updated' and list(value[key_of_dict].values())[2] != '':
                             print(f'{tabulation}- {key_of_dict} :')
                             print(f'{tabulation}+ {key_of_dict} :')
@@ -160,18 +157,16 @@ def stringify(x, spaces='  '):
                             acc += 1
                             tabulation = spaces * acc
                             walk(list(value[key_of_dict].values())[2], acc+1)
-                            acc -=1
+                            acc -= 1
                             tabulation = spaces * acc
                     else:
                         print('***')
                 if type(value[key_of_dict]) is not dict:
                     acc += 1
                     tabulation = spaces * acc
-                    print(f'{tabulation}{key_of_dict}:',value[key_of_dict])
+                    print(f'{tabulation}{key_of_dict}:', value[key_of_dict])
                     acc -= 1
                     tabulation = spaces * acc
-
-
         acc -= 1
         tabulation = spaces * acc
         print(tabulation + '}')
@@ -271,7 +266,7 @@ def convert_to_file(func, file_difference):
 
 
 def print_file_content():
-    f = open("output.json",'r')
+    f = open("output.json", 'r')
     data = f.read()
     f.close()
     print(data)
@@ -289,12 +284,9 @@ def generate_diff(path_1, path_2, formatter='stylish'):
         convert_to_file(get_plain_diff, result)
         return print_file_content()
     elif formatter == 'json':
-        jsonStr = json.dumps(result)
+        jsonstr = json.dumps(result)
         with open("output.json", 'w') as file:
-            file.write(jsonStr)
+            file.write(jsonstr)
         return print_file_content()
- #       print(jsonStr)
-  #      return jsonStr
-
-
-
+        # print(jsonStr)
+        # return jsonStr
