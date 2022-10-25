@@ -1,7 +1,6 @@
 from gendiff.scripts.get_diffs import get_dict_from_file
 from gendiff.scripts.gendiff import generate_diff
 import os
-from pathlib import Path
 
 
 control_result = {
@@ -10,10 +9,6 @@ control_result = {
     'proxy': '123.234.53.22',
     'follow': False}
 
-test_directory = os.getcwd()
-print(os.getcwd())
-print("11")
-print("!!!", Path.cwd())
 path_to_file_1_json = "tests/fixtures/flat/file1.json"
 path_to_file_2_json = "tests/fixtures/flat/file2.json"
 
