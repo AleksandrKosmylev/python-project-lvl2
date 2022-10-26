@@ -3,7 +3,7 @@ import yaml
 import sys
 import os
 
-
+# flake8: noqa: C901
 output_path = "gendiff/output.json"
 
 
