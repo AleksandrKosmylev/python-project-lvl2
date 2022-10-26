@@ -3,7 +3,7 @@ import yaml
 import sys
 import os
 
-# flake8: noqa: C901
+
 output_path = "gendiff/output.json"
 
 
@@ -120,87 +120,89 @@ def stringify(x, spaces='  '):
                         acc -= 1
                         tabulation = spaces * acc
                     elif keys_of_tree == list(value[key_of_dict].keys()):
-                        status_value = list(value[key_of_dict].values())[0]
+                        values_list = list(value[key_of_dict].values())
+                        values_list = values_list
+                        status_value = values_list[0]
                         # branches that depend on status
                         # was added.
                         # check children: if no childs.
                         # list(value[key_of_dict].values())[2] == 'childs': ""
                         # (list(value[key_of_dict].values())[1]) == 'value': ""
                         if status_value == 'was added' and\
-                                list(value[key_of_dict].values())[2] == '':
+                                values_list[2] == '':
                             print(f'{tabulation}'
                                   f'{sigh(status_value)} {key_of_dict}: ',
                                   end='')
-                            print(list(value[key_of_dict].values())[1])
+                            print(values_list[1])
                         # check children: if childs exist.
                         # list(value[key_of_dict].values())[2] ==
                         # 'childs': "{, }"
                         elif status_value == 'was added' and\
-                                list(value[key_of_dict].values())[2] != '':
+                                values_list[2] != '':
                             print(f'{tabulation}'
                                   f'{sigh(status_value)} {key_of_dict}:', "{")
                             acc += 1
-                            walk(list(value[key_of_dict].values())[2], acc + 1)
+                            walk(values_list[2], acc + 1)
                             tabulation = spaces * acc
                             acc -= 1
                         elif status_value == 'no changes' and\
-                                list(value[key_of_dict].values())[2] == '':
+                                values_list[2] == '':
                             print(f' {tabulation}'
                                   f'{sigh(status_value)}'
                                   f'{key_of_dict}: ', end='')
-                            print(list(value[key_of_dict].values())[1])
+                            print(values_list[1])
                         elif status_value == 'no changes' and\
-                                list(value[key_of_dict].values())[2] != '':
+                                values_list[2] != '':
                             print(f'{tabulation}'
                                   f'{sigh(status_value)}'
                                   f'{key_of_dict}:')
-                            walk(list(value[key_of_dict].values())[2], acc + 1)
+                            walk(values_list[2], acc + 1)
                         elif status_value == 'was updated':
-                            if list(value[key_of_dict].values())[2] == '[**]':
+                            if values_list[2] == '[**]':
                                 print(f'{tabulation}- {key_of_dict}: ', " {")
-                                walk(list(value[key_of_dict].values())[3], acc + 1)
+                                walk(values_list[3], acc + 1)
                                 print(f'{tabulation}+ {key_of_dict}: ')
-                                walk(list(value[key_of_dict].values())[1], acc + 1)
-                            elif list(value[key_of_dict].values())[2] == '[_*]':
+                                walk(values_list[1], acc + 1)
+                            elif values_list[2] == '[_*]':
                                 print(f'{tabulation}- {key_of_dict}: ', end='')
-                                print(list(value[key_of_dict].values())[3])
+                                print(values_list[3])
                                 print(f'{tabulation}+ {key_of_dict}:', "{")
                                 acc += 1
-                                walk(list(value[key_of_dict].values())[1], acc + 1)
+                                walk(values_list[1], acc + 1)
                                 acc -= 1
                                 tabulation = spaces * acc
-                            elif list(value[key_of_dict].values())[2] == '[*_]':
+                            elif values_list[2] == '[*_]':
                                 print(f'{tabulation}- {key_of_dict}:', "{")
                                 acc += 1
-                                walk(list(value[key_of_dict].values())[3], acc + 1)
+                                walk(values_list[3], acc + 1)
                                 acc -= 1
                                 tabulation = spaces * acc
                                 print(f'{tabulation}+ {key_of_dict}: ', end='')
-                                print(list(value[key_of_dict].values())[1])
-                            elif list(value[key_of_dict].values())[2] == '[__]':
+                                print(values_list[1])
+                            elif values_list[2] == '[__]':
                                 print(f'{tabulation}- {key_of_dict}:', end='')
-                                if list(value[key_of_dict].values())[3] == "":
+                                if values_list[3] == "":
                                     print(" ")
                                 else:
-                                    print("", list(value[key_of_dict].values())[3])
+                                    print("", values_list[3])
                                 print(f'{tabulation}+ {key_of_dict}:', end='')
-                                if list(value[key_of_dict].values())[1] == "":
+                                if values_list[1] == "":
                                     print(" ")
                                 else:
-                                    print("", list(value[key_of_dict].values())[1])
+                                    print("", values_list[1])
                         elif status_value == 'was updated' and\
-                                list(value[key_of_dict].values())[2] != '':
+                                values_list[2] != '':
                             print(f'{tabulation}- {key_of_dict} :')
                             print(f'{tabulation}+ {key_of_dict} :')
                         elif status_value == 'was removed' and\
-                                list(value[key_of_dict].values())[2] == '':
+                                values_list[2] == '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}: ', end='')
-                            print(list(value[key_of_dict].values())[3])
+                            print(values_list[3])
                         elif status_value == 'was removed' and\
-                                list(value[key_of_dict].values())[2] != '':
+                                values_list[2] != '':
                             print(f'{tabulation}{sigh(status_value)} {key_of_dict}:', "{")
                             acc += 1
-                            walk(list(value[key_of_dict].values())[2], acc + 1)
+                            walk(values_list[2], acc + 1)
                             acc -= 1
                             tabulation = spaces * acc
                     else:
