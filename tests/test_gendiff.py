@@ -9,11 +9,9 @@ control_result = {
     'proxy': '123.234.53.22',
     'follow': False}
 
+
 path_to_file_1_json = "tests/fixtures/flat/file1.json"
 path_to_file_2_json = "tests/fixtures/flat/file2.json"
-
-# path_to_file_1_json = test_directory + "/file1.json"
-# path_to_file_2_json = test_directory + "/file2.json"
 path_stringify_flat_json = "tests/fixtures/flat/test_stringify.json"
 path_to_file_1_1json = "tests/fixtures/nested/file1.json"
 path_to_file_2_1json = "tests/fixtures/nested/file2.json"
@@ -24,7 +22,6 @@ path_plain_json = "tests/fixtures/nested/test_plain.json"
 
 
 def test_get_dict_from_file():
-    # assert get_dict_from_file(path_to_file_1_json) == control_result
     assert get_dict_from_file(path_to_file_1_json) == control_result
 
 
@@ -66,7 +63,3 @@ def test_plain():
             data_1 = file_1.read()
             data_2 = file_2.read()
             assert data_1 == data_2
-#            try:
-#               assert data_1 == data_2
-#           finally:
-#               os.remove("output.json")

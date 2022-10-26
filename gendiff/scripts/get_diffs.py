@@ -332,5 +332,3 @@ def generate_diff(path_1, path_2, formatter='stylish'):
         with open("output.json", 'w') as file:
             file.write(jsonstr)
         return print_file_content()
-        # print(jsonStr)
-        # return jsonStr

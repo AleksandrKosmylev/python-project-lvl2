@@ -19,16 +19,12 @@ def print_result():
     b = args.filepath2
     if args.format == 'plain':
         generate_diff(a, b, 'plain')
-#        os.remove("gendiff/output.json")
     elif args.format == 'stylish':
         generate_diff(a, b)
-#        os.remove("gendiff/output.json")
     elif args.format == 'json':
         generate_diff(a, b, 'json')
-#        os.remove("gendiff/output.json")
     else:
         generate_diff(a, b)
-#        os.remove("gendiff/output.json")
 
 
 def main():
