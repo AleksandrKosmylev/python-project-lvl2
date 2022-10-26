@@ -11,6 +11,7 @@ def print_result():
         description='Compares two configuration files and shows a difference.')
     parser.add_argument("-f", '--format',
                         help='set format of output')
+    parser.add_argument("-V", '--version', action='version', version='1.0')
     parser.add_argument('filepath1', type=str)
     parser.add_argument('filepath2', type=str)
     args = parser.parse_args()
