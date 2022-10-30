@@ -11,7 +11,7 @@ def print_result():
         description='Compares two configuration files and shows a difference.',
         add_help=False)
     parser.add_argument("-V", '--version', action='version', version='1.0')
-    parser.add_argument("-f", '--format',
+    parser.add_argument("-f", '--format', metavar='',
                         help='output format (default: "stylish")')
     parser.add_argument('-h', '--help', action='help',
                         default=argparse.SUPPRESS,

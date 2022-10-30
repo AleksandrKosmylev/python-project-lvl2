@@ -41,35 +41,37 @@ def get_dicts_diff(dict_1, dict_2):
     keys2 = set(b.keys())
     # unioned and sorted in alphabetical order sets
     unioned_keys = sorted(keys1 | keys2, reverse=False)
+    removed = 'was removed'
+    added = 'was added'
     for i in unioned_keys:
         if i in keys1 and i not in keys2:
             result[i] = {
-                'status': 'was removed',
+                'type': removed,
                 'value': a[i],
                 'childs': "",
                 "old_value": a[i]}
             if type(a[i]) is dict:
                 result[i] = {
-                    'status': 'was removed',
+                    'type': removed,
                     'value': "", 'childs': a[i],
                     "old_value": a[i]
                 }
             elif type(a[i]) is not dict:
                 result[i] = {
-                    'status': 'was removed',
+                    'type': removed,
                     'value': "", 'childs': "",
                     "old_value": a[i]
                 }
         elif i in keys2 and i not in keys1:
             if type(b[i]) is dict:
                 result[i] = {
-                    'status': 'was added',
+                    'type': added,
                     'value': b[i], 'childs': b[i],
                     "old_value": ""
                 }
             else:
                 result[i] = {
-                    'status': 'was added',
+                    'type': added,
                     'value': b[i], 'childs': "",
                     "old_value": ""
                 }
@@ -79,25 +81,25 @@ def get_dicts_diff(dict_1, dict_2):
             elif (type(a[i]) is dict) is False or (type(b[i]) is dict) is False:
                 if a[i] != b[i]:
                     if (type(a[i]) is dict) and (type(b[i]) is dict):
-                        result[i] = {'status': 'was updated',
+                        result[i] = {'type': 'was updated',
                                      'value': b[i], 'childs': '[**]',
                                      "old_value": a[i]}
                     elif (type(a[i]) is not dict) and (type(b[i]) is dict):
-                        result[i] = {'status': 'was updated',
+                        result[i] = {'type': 'was updated',
                                      'value': b[i], 'childs': '[_*]',
                                      "old_value": a[i]
                                      }
                     elif (type(a[i]) is dict) and (type(b[i]) is not dict):
-                        result[i] = {'status': 'was updated',
+                        result[i] = {'type': 'was updated',
                                      'value': b[i], 'childs': '[*_]',
                                      "old_value": a[i]}
                     elif (type(a[i]) is not dict) and (type(b[i]) is not dict):
-                        result[i] = {'status': 'was updated',
+                        result[i] = {'type': 'was updated',
                                      'value': b[i], 'childs': '[__]',
                                      "old_value": a[i]}
                 else:
                     result[i] = {
-                        'status': 'no changes',
+                        'type': 'no changes',
                         'value': b[i],
                         'childs': "",
                         "old_value": a[i]
@@ -108,7 +110,7 @@ def get_dicts_diff(dict_1, dict_2):
 def stringify(x, spaces='  '):
     def walk(value, acc):
         tab = spaces * acc
-        keys_of_tree = ['status', 'value', 'childs', 'old_value']
+        keys_of_tree = ['type', 'value', 'childs', 'old_value']
         if type(value) is dict:
             for dict_key in value.keys():
                 if type(value[dict_key]) is dict:
@@ -128,7 +130,8 @@ def stringify(x, spaces='  '):
                         # check children: if no childs.
                         # list(value[dict_key].values())[2] == 'childs': ""
                         # (list(value[dict_key].values())[1]) == 'value': ""
-                        if status == 'was added' and\
+                        added = 'was added'
+                        if status == added and\
                                 values_list[2] == '':
                             print(f'{tab}'
                                   f'{sigh(status)} {dict_key}: ',
@@ -137,7 +140,7 @@ def stringify(x, spaces='  '):
                         # check children: if childs exist.
                         # list(value[dict_key].values())[2] ==
                         # 'childs': "{, }"
-                        elif status == 'was added' and\
+                        elif status == added and\
                                 values_list[2] != '':
                             print(f'{tab}'
                                   f'{sigh(status)} {dict_key}:', "{")
@@ -222,7 +225,7 @@ def stringify(x, spaces='  '):
 
 def get_plain_diff(x):
     def walk(value, acc):
-        keys_of_tree = ['status', 'value', 'childs', 'old_value']
+        keys_of_tree = ['type', 'value', 'childs', 'old_value']
         for key_of_dict in value.keys():
             if type(value[key_of_dict]) is dict:
                 if keys_of_tree != list(value[key_of_dict].keys()):
