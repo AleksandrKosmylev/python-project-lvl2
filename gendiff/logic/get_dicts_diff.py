@@ -2,7 +2,6 @@ import json
 import yaml
 
 # flake8: noqa: C901
-output_path = "gendiff/output.json"
 
 
 def get_dict_from_file(path_to_file):
