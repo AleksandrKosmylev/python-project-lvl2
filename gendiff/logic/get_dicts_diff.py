@@ -38,8 +38,10 @@ def get_dicts_diff(dict_1, dict_2):
     keys2 = set(b.keys())
     # unioned and sorted in alphabetical order sets
     unioned_keys = sorted(keys1 | keys2, reverse=False)
+    # type variables
     removed = 'was removed'
     added = 'was added'
+    updated = 'was updated'
     for i in unioned_keys:
         if i in keys1 and i not in keys2:
             result[i] = {
@@ -50,7 +52,8 @@ def get_dicts_diff(dict_1, dict_2):
             if type(a[i]) is dict:
                 result[i] = {
                     'type': removed,
-                    'value': "", 'childs': a[i],
+                    'value': "",
+                    'childs': a[i],
                     "old_value": a[i]
                 }
             elif type(a[i]) is not dict:
@@ -63,13 +66,15 @@ def get_dicts_diff(dict_1, dict_2):
             if type(b[i]) is dict:
                 result[i] = {
                     'type': added,
-                    'value': b[i], 'childs': b[i],
+                    'value': b[i],
+                    'childs': b[i],
                     "old_value": ""
                 }
             else:
                 result[i] = {
                     'type': added,
-                    'value': b[i], 'childs': "",
+                    'value': b[i],
+                    'childs': "",
                     "old_value": ""
                 }
         elif i in keys1 and i in keys2:
@@ -78,22 +83,33 @@ def get_dicts_diff(dict_1, dict_2):
             elif (type(a[i]) is dict) is False or (type(b[i]) is dict) is False:
                 if a[i] != b[i]:
                     if (type(a[i]) is dict) and (type(b[i]) is dict):
-                        result[i] = {'type': 'was updated',
-                                     'value': b[i], 'childs': '[**]',
-                                     "old_value": a[i]}
+                        result[i] = {
+                            'type': updated,
+                            'value': b[i],
+                            'childs': '[**]',
+                            "old_value": a[i]
+                            }
                     elif (type(a[i]) is not dict) and (type(b[i]) is dict):
-                        result[i] = {'type': 'was updated',
-                                     'value': b[i], 'childs': '[_*]',
-                                     "old_value": a[i]
-                                     }
+                        result[i] = {
+                            'type': updated,
+                            'value': b[i],
+                            'childs': '[_*]',
+                            "old_value": a[i]
+                            }
                     elif (type(a[i]) is dict) and (type(b[i]) is not dict):
-                        result[i] = {'type': 'was updated',
-                                     'value': b[i], 'childs': '[*_]',
-                                     "old_value": a[i]}
+                        result[i] = {
+                            'type': updated,
+                             'value': b[i],
+                             'childs': '[*_]',
+                             "old_value": a[i]
+                             }
                     elif (type(a[i]) is not dict) and (type(b[i]) is not dict):
-                        result[i] = {'type': 'was updated',
-                                     'value': b[i], 'childs': '[__]',
-                                     "old_value": a[i]}
+                        result[i] = {
+                            'type': updated,
+                            'value': b[i],
+                            'childs': '[__]',
+                            "old_value": a[i]
+                             }
                 else:
                     result[i] = {
                         'type': 'no changes',
