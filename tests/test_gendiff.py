@@ -1,5 +1,5 @@
 from gendiff.scripts.get_diffs import get_dict_from_file
-from gendiff.scripts.gendiff import generate_diff
+from gendiff.scripts.get_diffs import generate_diff
 import os
 
 
