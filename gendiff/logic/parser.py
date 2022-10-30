@@ -1,5 +1,5 @@
 import argparse
-from gendiff.scripts.get_diffs import generate_diff
+from logic.get_diffs import generate_diff
 
 
 def print_result():

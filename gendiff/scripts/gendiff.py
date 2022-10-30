@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from gendiff.scripts.parser import print_result
+from logic.parser import print_result
 
 
 def main():
