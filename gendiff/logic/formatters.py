@@ -21,43 +21,45 @@ def stringify(x, spaces='  '):
                     elif keys_of_tree == list(value[dict_key].keys()):
                         values_list = list(value[dict_key].values())
                         values_list = values_list
-                        status = values_list[0]
-                        # branches that depend on status
+                        constant_type = values_list[0]
+                        # branches that depend on type
                         # was added.
                         # check children: if no childs.
                         # list(value[dict_key].values())[2] == 'childs': ""
                         # (list(value[dict_key].values())[1]) == 'value': ""
+                        # symbols for childs, if they are dicts:
+                        # '[**]' - both are dicts, '[_*]' - 2nd is a dict, '[*_]' - 1st is a dict, '[__]' - no dicts
                         added = 'was added'
-                        if status == added and\
+                        if constant_type == added and\
                                 values_list[2] == '':
                             print(f'{tab}'
-                                  f'{sigh(status)} {dict_key}: ',
+                                  f'{sigh(constant_type)} {dict_key}: ',
                                   end='')
                             print(values_list[1])
                         # check children: if childs exist.
                         # list(value[dict_key].values())[2] ==
                         # 'childs': "{, }"
-                        elif status == added and\
+                        elif constant_type == added and\
                                 values_list[2] != '':
                             print(f'{tab}'
-                                  f'{sigh(status)} {dict_key}:', "{")
+                                  f'{sigh(constant_type)} {dict_key}:', "{")
                             acc += 1
                             walk(values_list[2], acc + 1)
                             tab = spaces * acc
                             acc -= 1
-                        elif status == 'no changes' and\
+                        elif constant_type == 'no changes' and\
                                 values_list[2] == '':
                             print(f' {tab}'
-                                  f'{sigh(status)}'
+                                  f'{sigh(constant_type)}'
                                   f'{dict_key}: ', end='')
                             print(values_list[1])
-                        elif status == 'no changes' and\
+                        elif constant_type == 'no changes' and\
                                 values_list[2] != '':
                             print(f'{tab}'
-                                  f'{sigh(status)}'
+                                  f'{sigh(constant_type)}'
                                   f'{dict_key}:')
                             walk(values_list[2], acc + 1)
-                        elif status == 'was updated':
+                        elif constant_type == 'was updated':
                             if values_list[2] == '[**]':
                                 print(f'{tab}- {dict_key}: ', " {")
                                 walk(values_list[3], acc + 1)
@@ -90,17 +92,17 @@ def stringify(x, spaces='  '):
                                     print(" ")
                                 else:
                                     print("", values_list[1])
-                        elif status == 'was updated' and\
+                        elif constant_type == 'was updated' and\
                                 values_list[2] != '':
                             print(f'{tab}- {dict_key} :')
                             print(f'{tab}+ {dict_key} :')
-                        elif status == 'was removed' and\
+                        elif constant_type == 'was removed' and\
                                 values_list[2] == '':
-                            print(f'{tab}{sigh(status)} {dict_key}: ', end='')
+                            print(f'{tab}{sigh(constant_type)} {dict_key}: ', end='')
                             print(values_list[3])
-                        elif status == 'was removed' and\
+                        elif constant_type == 'was removed' and\
                                 values_list[2] != '':
-                            print(f'{tab}{sigh(status)} {dict_key}:', "{")
+                            print(f'{tab}{sigh(constant_type)} {dict_key}:', "{")
                             acc += 1
                             walk(values_list[2], acc + 1)
                             acc -= 1
