@@ -1,4 +1,4 @@
-from gendiff.logic.get_diffs import get_dict_from_file
+from gendiff.logic.get_dicts_diff import get_dict_from_file
 from gendiff.logic.get_diffs import generate_diff
 import os
 
