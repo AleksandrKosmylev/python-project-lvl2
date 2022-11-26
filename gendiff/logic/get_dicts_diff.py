@@ -18,14 +18,14 @@ def get_dict_from_file(path_to_file):
         return {}
 
 
-def sigh(mark):
-    if mark == 'was added':
+def sign(mark):
+    if mark == "was added":
         return '+'
-    elif mark == 'was removed':
+    elif mark == "was removed":
         return '-'
-    elif mark == 'no changes':
+    elif mark == "no changes":
         return ' '
-    elif mark == 'was updated':
+    elif mark == "was updated":
         return ' '
 
 
