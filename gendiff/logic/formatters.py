@@ -92,13 +92,13 @@ def stringify(y, spaces='  '):
 
 
 def get_plain_diff(x):
-    def walk(value, acc):
+    def walk(value, acc, list_acc):
         keys_of_tree = ['type', 'value', 'childs', 'old_value']
         for key_of_dict in value.keys():
             if type(value[key_of_dict]) is dict:
                 if keys_of_tree != list(value[key_of_dict].keys()):
-                    acc.append(str(key_of_dict) + '.')
-                    walk(value[key_of_dict], acc)
+                    acc.append(str(key_of_dict) + ".")
+                    walk(value[key_of_dict], acc, list_acc)
                     acc = acc[:-1]
                 if keys_of_tree == list(value[key_of_dict].keys()):
                     status_value = list(value[key_of_dict].values())[0]
@@ -107,56 +107,69 @@ def get_plain_diff(x):
                     # check children: if no childs.
                     # list(value[key_of_dict].values())[2] == 'childs': ""
                     # (list(value[key_of_dict].values())[1]) == 'value': ""
-                    if status_value == 'was added':
+                    list_childs = list(value[key_of_dict].values())[2]
+                    list_values = list(value[key_of_dict].values())[1]
+                    if status_value == "was added":
                         # check children: if childs exist.
                         # list(value[key_of_dict].values())[2] ==
                         # 'childs': "{, }
-                        if list(value[key_of_dict].values())[2] == '':
-                            acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)),
-                                  status_value, "with value:",
-                                  end=' ')
-                            print(repr(list(value[key_of_dict].values())[1]))
-                            acc = acc[:-1]
-                        elif list(value[key_of_dict].values())[2] != '':
-                            acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)),
-                                  status_value, "with value:", end=' ')
-                            print('[complex value]')
-                            acc = acc[:-1]
-                    elif status_value == 'was updated':
-                        if list(value[key_of_dict].values())[2] == '[**]':
-                            walk(list(value[key_of_dict].values())[3], acc)
-                            acc = acc[:-1]
-                            walk(list(value[key_of_dict].values())[1], acc)
-                            acc = acc[:-1]
-                        elif list(value[key_of_dict].values())[2] == '[_*]':
-                            acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)),
-                                  'was updated. From', end=' ')
-                            print(repr(list(value[key_of_dict].values())[3]),
-                                  'to', end=' ')
-                            print('[complex value]')
-                            acc = acc[:-1]
-                        elif list(value[key_of_dict].values())[2] == '[*_]':
-                            acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)),
-                                  'was updated. From', end=' ')
-                            print('[complex value] to', end=' ')
-                            print(repr(list(value[key_of_dict].values())[1]))
-                            acc = acc[:-1]
-                        elif list(value[key_of_dict].values())[2] == '[__]':
-                            acc.append(str(key_of_dict))
-                            print("Property", repr(''.join(acc)),
-                                  'was updated. From', end=' ')
-                            print(repr(list(value[key_of_dict].values())[3]),
-                                  'to', end=' ')
-                            print(repr(list(value[key_of_dict].values())[1]))
-                            acc = acc[:-1]
-                    elif status_value == 'was removed':
                         acc.append(str(key_of_dict))
-                        print("Property", repr(''.join(acc)), status_value)
+                        list_acc.extend([
+                            "Property ", repr(''.join(acc)), " ",
+                            status_value, " with value: "])
+                        if list_childs == '':
+                            list_acc.extend([
+                                repr(list_values), '\n'
+                            ])
+                            acc = acc[:-1]
+                        elif list_childs != '':
+                            list_acc.extend([
+                                "[complex value]", "\n"
+                            ])
+                            acc = acc[:-1]
+                    elif status_value == "was updated":
+                        list_old_values = list(value[key_of_dict].values())[3]
+                        if list_childs == '[**]':
+                            walk(list_old_values, acc, list_acc)
+                            acc = acc[:-1]
+                            walk(list_values, acc, list_acc)
+                            acc = acc[:-1]
+                        elif list_childs == '[_*]':
+                            acc.append(str(key_of_dict))
+                            list_acc.extend([
+                                "Property ", repr(''.join(acc)),
+                                "was updated. From ",
+                                repr(list_old_values),
+                                'to [complex value]', "\n"
+                            ])
+                            acc = acc[:-1]
+                        elif list_childs == '[*_]':
+                            acc.append(str(key_of_dict))
+                            list_acc.extend([
+                                "Property ", repr(''.join(acc)),
+                                " was updated. From ",
+                                "[complex value] to ",
+                                repr(list_values),
+                                "\n"
+                            ])
+                            acc = acc[:-1]
+                        elif list_childs == '[__]':
+                            acc.append(str(key_of_dict))
+                            list_acc.extend([
+                                "Property ", repr(''.join(acc)),
+                                " was updated. From ",
+                                repr(list_old_values),
+                                " to ", repr(list_values), "\n"
+                            ])
+                            acc = acc[:-1]
+                    elif status_value == "was removed":
+                        acc.append(str(key_of_dict))
+                        list_acc.extend([
+                            "Property ", repr(''.join(acc)), " ",
+                            status_value, "\n"
+                        ])
                         acc = acc[:-1]
                 else:
                     acc = acc[:-1]
-    return walk(x, [])
+        return "".join(list_acc)
+    return walk(x, [], [])

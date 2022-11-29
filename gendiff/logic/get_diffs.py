@@ -9,7 +9,6 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     if formatter == 'stylish':
         print(stringify(result))
     elif formatter == 'plain':
-        get_plain_diff(result)
+        print(get_plain_diff(result))
     elif formatter == 'json':
         print(result)
-        return result

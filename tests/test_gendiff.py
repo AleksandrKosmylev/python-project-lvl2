@@ -1,6 +1,6 @@
 from gendiff.logic.get_dicts_diff import get_dict_from_file
 from gendiff.logic.get_diffs import generate_diff
-import os
+from gendiff.logic.formatters import stringify
 
 
 control_result = {
@@ -26,11 +26,6 @@ def test_get_dict_from_file():
 
 
 def test_stringify_flat_json():
-    """"
-    generate_diff(path_to_file_1_json, path_to_file_2_json)
-    print(os.getcwd())
-    with open("output.json", 'r') as file_1:
-    """
     y = generate_diff(path_to_file_1_json, path_to_file_2_json)
     data_1 = stringify(y, spaces='  ')
     with open(path_stringify_flat_json, 'r') as file_1:
