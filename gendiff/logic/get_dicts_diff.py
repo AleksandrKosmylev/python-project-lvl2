@@ -1,5 +1,6 @@
 import json
 import yaml
+# flake8: noqa: C901
 
 
 def get_dict_from_file(path_to_file):
@@ -76,7 +77,8 @@ def get_dicts_diff(dict_1, dict_2):
                     "old_value": ""
                 }
         # symbols for childs, if they are dicts:
-        # '[**]' - both are dicts, '[_*]' - 2nd is a dict, '[*_]' - 1st is a dict, '[__]' - no dicts
+        # '[**]' - both are dicts, '[_*]' - 2nd is a dict,
+        # '[*_]' - 1st is a dict, '[__]' - no dicts
         elif i in keys1 and i in keys2:
             if (type(a[i]) is dict) is True and (type(b[i]) is dict) is True:
                 result[i] = (get_dicts_diff(a[i], b[i]))
@@ -88,28 +90,28 @@ def get_dicts_diff(dict_1, dict_2):
                             'value': b[i],
                             'childs': '[**]',
                             "old_value": a[i]
-                            }
+                        }
                     elif (type(a[i]) is not dict) and (type(b[i]) is dict):
                         result[i] = {
                             'type': updated,
                             'value': b[i],
                             'childs': '[_*]',
                             "old_value": a[i]
-                            }
+                        }
                     elif (type(a[i]) is dict) and (type(b[i]) is not dict):
                         result[i] = {
                             'type': updated,
                             'value': b[i],
                             'childs': '[*_]',
                             "old_value": a[i]
-                            }
+                        }
                     elif (type(a[i]) is not dict) and (type(b[i]) is not dict):
                         result[i] = {
                             'type': updated,
                             'value': b[i],
                             'childs': '[__]',
                             "old_value": a[i]
-                             }
+                        }
                 else:
                     result[i] = {
                         'type': 'no changes',

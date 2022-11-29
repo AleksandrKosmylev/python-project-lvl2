@@ -1,4 +1,5 @@
 from gendiff.logic.get_dicts_diff import sign
+# flake8: noqa: C901
 
 
 def stringify(y, spaces='  '):
