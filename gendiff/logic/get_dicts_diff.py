@@ -19,13 +19,13 @@ def get_dict_from_file(path_to_file):
 
 def sign(mark):
     if mark == "was added":
-        return '+'
+        return '+ '
     elif mark == "was removed":
-        return '-'
+        return '- '
     elif mark == "no changes":
-        return ' '
+        return '  '
     elif mark == "was updated":
-        return ' '
+        return '  '
 
 
 def get_dicts_diff(dict_1, dict_2):

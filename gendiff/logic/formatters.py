@@ -52,14 +52,14 @@ def stringify(y, spaces='  '):
                             tab = spaces * acc
                         elif dict_type == 'was updated':
                             if dict_children == '[**]':
-                                x.extend([tab, "- ", dict_key, ": {"])
+                                x.extend([tab, "- ", dict_key, ": {\n"])
                                 walk(values_list[3], acc + 1, x)
                                 x.extend([tab, "+ ", dict_key, ": "])
                                 walk(values_list[1], acc + 1, x)
                             elif dict_children == '[_*]':
                                 x.extend([tab, "- ", dict_key, ": "])
-                                x.extend([values_list[3]])
-                                x.extend([tab, "+ ", dict_key, ": {"])
+                                x.extend([values_list[3], "\n"])
+                                x.extend([tab, "+ ", dict_key, ": {\n"])
                                 acc += 1
                                 walk(values_list[1], acc + 1, x)
                                 acc -= 1
@@ -86,6 +86,10 @@ def stringify(y, spaces='  '):
         acc -= 1
         tab = spaces * acc
         x.extend([tab, '}\n'])
+        for index, piece in enumerate(x):
+            check_dict = {True: "true", False: "false", None: "null"}
+            if piece in list(check_dict.keys()):
+                x[index] = check_dict[piece]
         z = [str(i) for i in x]
         s = "".join(z)
         return s
@@ -172,5 +176,9 @@ def get_plain_diff(x):
                         acc = acc[:-1]
                 else:
                     acc = acc[:-1]
+        for index, piece in enumerate(acc):
+            check_dict = {True: "true", False: "false", None: "null"}
+            if piece in list(check_dict.keys()):
+                acc[index] = check_dict[piece]
         return "".join(list_acc)
     return walk(x, [], [])
