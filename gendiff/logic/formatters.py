@@ -6,83 +6,84 @@ def stringify(y, spaces='  '):
     def walk(value, acc, x):
         tab = spaces * acc
         keys_of_tree = ['type', 'value', 'childs', 'old_value']
-        for dict_key in value.keys():
-            if type(value[dict_key]) is dict:
-                if keys_of_tree != list(value[dict_key].keys()):
+        if type(value) is dict:
+            for dict_key in value.keys():
+                if type(value[dict_key]) is dict:
+                    if keys_of_tree != list(value[dict_key].keys()):
+                        acc += 1
+                        tab = spaces * acc
+                        x.extend([tab, dict_key, ": {\n"])
+                        walk(value[dict_key], acc + 1, x)
+                        acc -= 1
+                        tab = spaces * acc
+                    elif keys_of_tree == list(value[dict_key].keys()):
+                        values_list = list(value[dict_key].values())
+                        values_list = values_list
+                        dict_type = values_list[0]
+                        # branches that depend on type
+                        # was added.
+                        # check children: if no childs.
+                        # list(value[dict_key].values())[2] == 'childs': ""
+                        # (list(value[dict_key].values())[1]) == 'value': ""
+                        # symbols for childs, if they are dicts:
+                        # '[**]' - both are dicts, '[_*]' - 2nd is a dict,
+                        # '[*_]' - 1st is a dict, '[__]' - no dicts
+                        added = 'was added'
+                        no_changes = 'no changes'
+                        removed = 'was removed'
+                        dict_children = values_list[2]
+                        list_1 = [tab, sign(dict_type), dict_key, ": "]
+                        if dict_children == '':
+                            if dict_type == added:
+                                x.extend(list_1)
+                                x.extend([values_list[1], "\n"])
+                            elif dict_type == no_changes:
+                                x.extend(list_1)
+                                x.extend([values_list[1], "\n"])
+                            elif dict_type == removed:
+                                x.extend(list_1)
+                                x.extend([values_list[3], '\n'])
+                        if dict_children != '':
+                            if dict_type != 'was updated':
+                                x.extend(list_1)
+                                x.append("{\n")
+                                acc += 1
+                                walk(dict_children, acc + 1, x)
+                                acc -= 1
+                                tab = spaces * acc
+                            elif dict_type == 'was updated':
+                                if dict_children == '[**]':
+                                    x.extend([tab, "- ", dict_key, ": {\n"])
+                                    walk(values_list[3], acc + 1, x)
+                                    x.extend([tab, "+ ", dict_key, ": "])
+                                    walk(values_list[1], acc + 1, x)
+                                elif dict_children == '[_*]':
+                                    x.extend([tab, "- ", dict_key, ": "])
+                                    x.extend([values_list[3], "\n"])
+                                    x.extend([tab, "+ ", dict_key, ": {\n"])
+                                    acc += 1
+                                    walk(values_list[1], acc + 1, x)
+                                    acc -= 1
+                                    tab = spaces * acc
+                                elif dict_children == '[*_]':
+                                    x.extend([tab, "- ", dict_key, ": {\n"])
+                                    acc += 1
+                                    walk(values_list[3], acc + 1, x)
+                                    acc -= 1
+                                    tab = spaces * acc
+                                    x.extend([tab, '+ ', dict_key,
+                                              ': ', values_list[1], "\n"])
+                                elif dict_children == '[__]':
+                                    x.extend([tab, "- ", dict_key, ": ",
+                                              values_list[3], "\n"])
+                                    x.extend([tab, "+ ", dict_key, ": ",
+                                              values_list[1], "\n"])
+                if type(value[dict_key]) is not dict:
                     acc += 1
                     tab = spaces * acc
-                    x.extend([tab, dict_key, ": {\n"])
-                    walk(value[dict_key], acc + 1, x)
+                    x.extend([tab, dict_key, ": ", value[dict_key], "\n"])
                     acc -= 1
                     tab = spaces * acc
-                elif keys_of_tree == list(value[dict_key].keys()):
-                    values_list = list(value[dict_key].values())
-                    values_list = values_list
-                    dict_type = values_list[0]
-                    # branches that depend on type
-                    # was added.
-                    # check children: if no childs.
-                    # list(value[dict_key].values())[2] == 'childs': ""
-                    # (list(value[dict_key].values())[1]) == 'value': ""
-                    # symbols for childs, if they are dicts:
-                    # '[**]' - both are dicts, '[_*]' - 2nd is a dict,
-                    # '[*_]' - 1st is a dict, '[__]' - no dicts
-                    added = 'was added'
-                    no_changes = 'no changes'
-                    removed = 'was removed'
-                    dict_children = values_list[2]
-                    list_1 = [tab, sign(dict_type), dict_key, ": "]
-                    if dict_children == '':
-                        if dict_type == added:
-                            x.extend(list_1)
-                            x.extend([values_list[1], "\n"])
-                        elif dict_type == no_changes:
-                            x.extend(list_1)
-                            x.extend([values_list[1], "\n"])
-                        elif dict_type == removed:
-                            x.extend(list_1)
-                            x.extend([values_list[3], '\n'])
-                    if dict_children != '':
-                        if dict_type != 'was updated':
-                            x.extend(list_1)
-                            x.append("{\n")
-                            acc += 1
-                            walk(dict_children, acc + 1, x)
-                            acc -= 1
-                            tab = spaces * acc
-                        elif dict_type == 'was updated':
-                            if dict_children == '[**]':
-                                x.extend([tab, "- ", dict_key, ": {\n"])
-                                walk(values_list[3], acc + 1, x)
-                                x.extend([tab, "+ ", dict_key, ": "])
-                                walk(values_list[1], acc + 1, x)
-                            elif dict_children == '[_*]':
-                                x.extend([tab, "- ", dict_key, ": "])
-                                x.extend([values_list[3], "\n"])
-                                x.extend([tab, "+ ", dict_key, ": {\n"])
-                                acc += 1
-                                walk(values_list[1], acc + 1, x)
-                                acc -= 1
-                                tab = spaces * acc
-                            elif dict_children == '[*_]':
-                                x.extend([tab, "- ", dict_key, ": {\n"])
-                                acc += 1
-                                walk(values_list[3], acc + 1, x)
-                                acc -= 1
-                                tab = spaces * acc
-                                x.extend([tab, '+ ', dict_key,
-                                          ': ', values_list[1], "\n"])
-                            elif dict_children == '[__]':
-                                x.extend([tab, "- ", dict_key, ": ",
-                                          values_list[3], "\n"])
-                                x.extend([tab, "+ ", dict_key, ": ",
-                                          values_list[1], "\n"])
-            if type(value[dict_key]) is not dict:
-                acc += 1
-                tab = spaces * acc
-                x.extend([tab, dict_key, ": ", value[dict_key], "\n"])
-                acc -= 1
-                tab = spaces * acc
         acc -= 1
         tab = spaces * acc
         x.extend([tab, '}\n'])
