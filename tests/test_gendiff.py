@@ -36,11 +36,10 @@ def test_stringify_flat_json():
 
 def test_stringify_json():
     generate_diff(path_to_file_1_1json, path_to_file_2_1json)
-    with open("output.json", 'r') as file_1:
-        with open(path_stringify_json, 'r') as file_2:
-            data_1 = file_1.read()
-            data_2 = file_2.read()
-            assert data_1 == data_2, '{0} != {1}'.format(data_1, data_2)
+    with open(path_stringify_json, 'r') as file_2:
+        data_1 = file_1.read()
+        data_2 = file_2.read()
+        assert data_1 == data_2, '{0} != {1}'.format(data_1, data_2)
 
 
 def test_stringify_yaml():
