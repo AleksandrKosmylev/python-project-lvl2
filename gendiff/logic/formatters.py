@@ -88,9 +88,9 @@ def stringify(y, spaces='  '):
         tab = spaces * acc
         x.extend([tab, '}\n'])
         for index, piece in enumerate(x):
-            check_dict = {True: "true", False: "false", None: "null"}
-            if piece in list(check_dict.keys()):
-                x[index] = check_dict[piece]
+            check_dict = {"True": "true", "False": "false", "None": "null"}
+            if str(piece) in list(check_dict.keys()):
+                x[index] = check_dict[str(piece)]
         z = [str(i) for i in x]
         s = "".join(z)
         return s[:-1]
