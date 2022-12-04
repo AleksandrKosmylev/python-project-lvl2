@@ -65,7 +65,7 @@ def test_stringify_yaml():
     with open(path_stringify_json, 'r') as file_1:
         data_2 = file_1.read()
     assert data_1 == data_2
-    
+
 
 def test_plain():
     dict_1 = get_dict_from_file(path_to_file_1_1yaml)
@@ -75,5 +75,3 @@ def test_plain():
     with open(path_plain_json, 'r') as file_1:
         data_2 = file_1.read()
     assert data_1 == data_2
-    
-    
