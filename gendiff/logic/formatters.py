@@ -93,7 +93,7 @@ def stringify(y, spaces='  '):
                 x[index] = check_dict[piece]
         z = [str(i) for i in x]
         s = "".join(z)
-        return s
+        return s[:-1]
     return walk(y, 1, ["{\n"])
 
 
@@ -177,9 +177,9 @@ def get_plain_diff(x):
                         acc = acc[:-1]
                 else:
                     acc = acc[:-1]
-        for index, piece in enumerate(acc):
-            check_dict = {True: "true", False: "false", None: "null"}
+        for index, piece in enumerate(list_acc):
+            check_dict = {'True': "true", 'False': "false", 'None': "null"}
             if piece in list(check_dict.keys()):
-                acc[index] = check_dict[piece]
-        return "".join(list_acc)
+                list_acc[index] = check_dict[piece]
+        return "".join(list_acc)[:-1]
     return walk(x, [], [])

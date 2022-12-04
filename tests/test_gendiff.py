@@ -1,6 +1,6 @@
-from gendiff.logic.get_dicts_diff import get_dict_from_file
-from gendiff.logic.get_diffs import generate_diff
-from gendiff.logic.formatters import stringify
+from gendiff.logic.get_dicts_diff import get_dict_from_file, get_dicts_diff
+from gendiff.logic.formatters import stringify, get_plain_diff
+
 
 
 control_result = {
@@ -13,48 +13,68 @@ control_result = {
 path_to_file_1_json = "tests/fixtures/flat/file1.json"
 path_to_file_2_json = "tests/fixtures/flat/file2.json"
 path_stringify_flat_json = "tests/fixtures/flat/test_stringify.json"
+
 path_to_file_1_1json = "tests/fixtures/nested/file1.json"
 path_to_file_2_1json = "tests/fixtures/nested/file2.json"
 path_to_file_1_1yaml = "tests/fixtures/nested/file1.yaml"
 path_to_file_2_1yaml = "tests/fixtures/nested/file2.yaml"
 path_stringify_json = "tests/fixtures/nested/test_stringify.json"
 path_plain_json = "tests/fixtures/nested/test_plain.json"
+"""
+path_to_file_1_json = "fixtures/flat/file1.json"
+path_to_file_2_json = "fixtures/flat/file2.json"
+path_stringify_flat_json = "fixtures/flat/test_stringify.json"
 
+path_to_file_1_1json = "fixtures/nested/file1.json"
+path_to_file_2_1json = "fixtures/nested/file2.json"
+path_to_file_1_1yaml = "fixtures/nested/file1.yaml"
+path_to_file_2_1yaml = "fixtures/nested/file2.yaml"
+path_stringify_json = "fixtures/nested/test_stringify.json"
+path_plain_json = "fixtures/nested/test_plain.json"
+"""
 
 def test_get_dict_from_file():
     assert get_dict_from_file(path_to_file_1_json) == control_result
 
 
 def test_stringify_flat_json():
-    y = generate_diff(path_to_file_1_json, path_to_file_2_json)
-    data_1 = stringify(y, spaces='  ')
+    dict_1 = get_dict_from_file(path_to_file_1_json)
+    dict_2 = get_dict_from_file(path_to_file_2_json)
+    y = get_dicts_diff(dict_1, dict_2)
+    data_1 = str(stringify(y, spaces='  '))
     with open(path_stringify_flat_json, 'r') as file_1:
         data_2 = file_1.read()
-        assert data_1 == data_2
+    assert data_1 == data_2
 
 
 
 def test_stringify_json():
-    generate_diff(path_to_file_1_1json, path_to_file_2_1json)
-    with open(path_stringify_json, 'r') as file_2:
-        data_1 = file_1.read()
-        data_2 = file_2.read()
-        assert data_1 == data_2, '{0} != {1}'.format(data_1, data_2)
+    dict_1 = get_dict_from_file(path_to_file_1_1json)
+    dict_2 = get_dict_from_file(path_to_file_2_1json)
+    y = get_dicts_diff(dict_1, dict_2)
+    data_1 = str(stringify(y, spaces='  '))
+    with open(path_stringify_json , 'r') as file_1:
+        data_2 = file_1.read()
+    assert data_1 == data_2
 
 
 def test_stringify_yaml():
-    generate_diff(path_to_file_1_1yaml, path_to_file_2_1yaml)
-    with open("output.json", 'r') as file_1:
-        with open(path_stringify_json, 'r') as file_2:
-            data_1 = file_1.read()
-            data_2 = file_2.read()
-            assert data_1 == data_2, '{0} != {1}'.format(data_1, data_2)
+    dict_1 = get_dict_from_file(path_to_file_1_1yaml)
+    dict_2 = get_dict_from_file(path_to_file_2_1yaml)
+    y = get_dicts_diff(dict_1, dict_2)
+    data_1 = str(stringify(y, spaces='  '))
+    with open(path_stringify_json , 'r') as file_1:
+        data_2 = file_1.read()
+    assert data_1 == data_2
+    
 
 
 def test_plain():
-    generate_diff(path_to_file_1_1yaml, path_to_file_2_1yaml, "plain")
-    with open("output.json", 'r') as file_1:
-        with open(path_plain_json, 'r') as file_2:
-            data_1 = file_1.read()
-            data_2 = file_2.read()
-            assert data_1 == data_2
+    dict_1 = get_dict_from_file(path_to_file_1_1yaml)
+    dict_2 = get_dict_from_file(path_to_file_2_1yaml)
+    y = get_dicts_diff(dict_1, dict_2)
+    data_1 = str(get_plain_diff(y))
+    with open(path_plain_json, 'r') as file_1:
+        data_2 = file_1.read()
+    assert data_1 == data_2
+    
