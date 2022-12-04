@@ -9,7 +9,7 @@ control_result = {
     'proxy': '123.234.53.22',
     'follow': False}
 
-"""
+
 path_to_file_1_json = "tests/fixtures/flat/file1.json"
 path_to_file_2_json = "tests/fixtures/flat/file2.json"
 path_stringify_flat_json = "tests/fixtures/flat/test_stringify.json"
@@ -31,7 +31,7 @@ path_to_file_1_1yaml = "fixtures/nested/file1.yaml"
 path_to_file_2_1yaml = "fixtures/nested/file2.yaml"
 path_stringify_json = "fixtures/nested/test_stringify.json"
 path_plain_json = "fixtures/nested/test_plain.json"
-
+"""
 
 def test_get_dict_from_file():
     assert get_dict_from_file(path_to_file_1_json) == control_result
