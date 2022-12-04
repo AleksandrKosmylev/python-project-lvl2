@@ -16,6 +16,5 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     elif formatter == 'json':
         # print(result)
         # return json.dump(result)
-        with open('output.json', 'w') as fp:
-            json.dump(result, fp)
-        return 'output.json'
+        output_json = json.dumps(result)
+        return output_json
