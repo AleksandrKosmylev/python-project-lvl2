@@ -14,7 +14,7 @@ def get_dict_from_file(path_to_file):
         f = yaml.load(open(path_to_file), Loader=yaml.FullLoader)
         return dict(f.items())
     else:
-        return {}
+        return {"!!":"11"}
 
 
 def sign(mark):
