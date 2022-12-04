@@ -146,7 +146,7 @@ def get_plain_diff(x):
                                 "Property ", repr(''.join(acc)),
                                 "was updated. From ",
                                 repr(list_old_values),
-                                'to [complex value]', "\n"
+                                ' to [complex value]', "\n"
                             ])
                             acc = acc[:-1]
                         elif list_childs == '[*_]':
