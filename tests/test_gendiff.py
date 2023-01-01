@@ -30,7 +30,7 @@ path_to_file_1_1yaml = "fixtures/nested/file1.yaml"
 path_to_file_2_1yaml = "fixtures/nested/file2.yaml"
 path_stringify_json = "fixtures/nested/test_stringify.json"
 path_plain_json = "fixtures/nested/test_plain.json"
-"""
+
 
 
 def test_get_dict_from_file():
