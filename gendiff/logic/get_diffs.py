@@ -7,6 +7,7 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     dict_1 = get_dict_from_file(path_1)
     dict_2 = get_dict_from_file(path_2)
     result = get_dicts_diff(dict_1, dict_2)
+    # print(result)
     if formatter == 'stylish':
         print(stringify(result))
         return stringify(result)
