@@ -82,7 +82,7 @@ def stringify(y, spaces='  '):
                 x[index] = check_dict[str(piece)]
         z = [str(i) for i in x]
         s = "".join(z)
-        return s + "\n}\n"
+        return s + "\n}"
     return walk(y, 1, ["{"])
 
 
