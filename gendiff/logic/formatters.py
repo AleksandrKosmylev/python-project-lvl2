@@ -82,8 +82,8 @@ def stringify(y, spaces='  '):
                 x[index] = check_dict[str(piece)]
         z = [str(i) for i in x]
         s = "".join(z)
-        return s
-    return walk(y, 1, ["{"]), "\n}"
+        return s + "\n}"
+    return walk(y, 1, ["{"])
 
 
 def get_plain_diff(x):
