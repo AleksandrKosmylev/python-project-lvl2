@@ -1,5 +1,5 @@
 import argparse
-from gendiff.logic.get_diffs import generate_diff
+from gendiff.get_diffs import generate_diff
 
 
 def print_result():
@@ -17,11 +17,5 @@ def print_result():
     args = parser.parse_args()
     a = args.filepath1
     b = args.filepath2
-    if args.format == 'plain':
-        generate_diff(a, b, 'plain')
-    elif args.format == 'stylish':
-        generate_diff(a, b)
-    elif args.format == 'json':
-        generate_diff(a, b, 'json')
-    else:
-        generate_diff(a, b)
+    generate_diff(a, b, args.format)
+

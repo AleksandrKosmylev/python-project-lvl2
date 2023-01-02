@@ -1,22 +1,23 @@
-from gendiff.logic.get_dicts_diff import get_dicts_diff, get_dict_from_file
-from gendiff.logic.formatters import stringify, get_plain_diff
+from gendiff.get_dicts_diff import get_dicts_diff, get_dict_from_file
+from gendiff.formatters import stringify, get_plain_diff
 import json
 
+Stylish = 'stringify'
+Plain = 'plain'
+Json = 'json'
 
-def generate_diff(path_1, path_2, formatter='stylish'):
+
+def generate_diff(path_1, path_2, formatter=Stylish):
     dict_1 = get_dict_from_file(path_1)
     dict_2 = get_dict_from_file(path_2)
     result = get_dicts_diff(dict_1, dict_2)
-    # print(result)
-    if formatter == 'stylish':
+    if formatter == Stylish:
         print(stringify(result))
         return stringify(result)
-    elif formatter == 'plain':
+    elif formatter == Plain:
         print(get_plain_diff(result))
         return get_plain_diff(result)
-    elif formatter == 'json':
-        # print(result)
-        # return json.dump(result)
+    elif formatter == Json:
         output_json = json.dumps(result)
         print(output_json)
         return output_json

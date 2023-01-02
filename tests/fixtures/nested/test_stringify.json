@@ -40,7 +40,7 @@
             id: {
                 number: 45
             }
-        }
+        }        # convert dicts in sets of keys
         fee: 100500
     }
     group4: {
