@@ -6,6 +6,7 @@ Stylish = 'stylish'
 Plain = 'plain'
 Json = 'json'
 
+
 def generate_diff(path_1, path_2, formatter=Stylish):
     dict_1 = get_dict_from_file(path_1)
     dict_2 = get_dict_from_file(path_2)
@@ -13,7 +14,7 @@ def generate_diff(path_1, path_2, formatter=Stylish):
     if formatter == Stylish:
         print(stringify(result))
         return stringify(result)
-    elif formatter == Plain :
+    elif formatter == Plain:
         print(get_plain_diff(result))
         return get_plain_diff(result)
     elif formatter == Json:
