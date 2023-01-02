@@ -20,4 +20,3 @@ def generate_diff(path_1, path_2, formatter=Stylish):
         return output_json
     else:
         return stringify(result)
-    
