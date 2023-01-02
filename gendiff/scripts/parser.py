@@ -18,4 +18,3 @@ def print_result():
     a = args.filepath1
     b = args.filepath2
     generate_diff(a, b, args.format)
-
