@@ -17,4 +17,3 @@ def generate_diff(path_1, path_2, formatter='stringify'):
         output_json = json.dumps(result)
         print(output_json)
         return output_json
-
