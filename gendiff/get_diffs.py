@@ -13,15 +13,15 @@ def generate_diff(path_1, path_2, formatter="stylish"):
     result = get_dicts_diff(dict_1, dict_2)
     if formatter == 'stylish':
         print(stringify(result))
-        return stringify(result)
+        #return stringify(result)
     elif formatter == Plain:
         print(get_plain_diff(result))
-        return get_plain_diff(result)
+        #return get_plain_diff(result)
     elif formatter == Json:
         output_json = json.dumps(result)
         print(output_json)
-        return output_json
+        #return output_json
     else:
         print(stringify(result))
-        return stringify(result)
+        #return stringify(result)
     
