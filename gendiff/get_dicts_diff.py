@@ -37,7 +37,7 @@ def sign(mark):
         return '  '
 
 
-def get_dicts_diff(in_1, in_2):
+def get_dicts_diff(data_1, data_2):
     def walk(dict_1, dict_2, result):
         keys1 = set(dict_1.keys())
         keys2 = set(dict_2.keys())
@@ -58,15 +58,16 @@ def get_dicts_diff(in_1, in_2):
                     "old_value": dict_1[key]
                 }
             elif key in keys1 and key in keys2:
-                if ((type(dict_1[key]) is dict) and (type(dict_2[key]) is dict)) is True:
+                if isinstance(dict_1[key], dict) \
+                        and isinstance(dict_2[key], dict):
                     result[key] = {
                         'type': Both_dict,
                         'value': "",
                         'childs': walk(dict_1[key], dict_2[key], {}),
                         "old_value": ""
                     }
-                elif (type(dict_1[key]) is dict) is False\
-                        or (type(dict_2[key]) is dict) is False:
+                elif not isinstance(dict_1[key], dict) \
+                        or not isinstance(dict_2[key], dict):
                     if dict_1[key] != dict_2[key]:
                         result[key] = {
                             'type': Updated,
@@ -87,4 +88,4 @@ def get_dicts_diff(in_1, in_2):
                             "old_value": dict_1[key]
                         }
         return result
-    return walk(in_1, in_2, {})
+    return walk(data_1, data_2, {})
