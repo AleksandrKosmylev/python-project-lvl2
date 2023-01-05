@@ -42,49 +42,49 @@ def get_dicts_diff(in_1, in_2):
         keys1 = set(dict_1.keys())
         keys2 = set(dict_2.keys())
         unioned_keys = sorted(keys1 | keys2, reverse=False)
-        for i in unioned_keys:
-            if i in keys2 and i not in keys1:
-                result[i] = {
+        for key in unioned_keys:
+            if key in keys2 and key not in keys1:
+                result[key] = {
                     'type': Added,
-                    'value': dict_2[i],
+                    'value': dict_2[key],
                     'childs': "",
                     "old_value": ""
                 }
-            elif i in keys1 and i not in keys2:
-                result[i] = {
+            elif key in keys1 and key not in keys2:
+                result[key] = {
                     'type': Removed,
                     'value': "",
                     'childs': "",
-                    "old_value": dict_1[i]
+                    "old_value": dict_1[key]
                 }
-            elif i in keys1 and i in keys2:
-                if ((type(dict_1[i]) is dict) and (type(dict_2[i]) is dict)) is True:
-                    result[i] = {
+            elif key in keys1 and key in keys2:
+                if ((type(dict_1[key]) is dict) and (type(dict_2[key]) is dict)) is True:
+                    result[key] = {
                         'type': Both_dict,
                         'value': "",
-                        'childs': walk(dict_1[i], dict_2[i], {}),
+                        'childs': walk(dict_1[key], dict_2[key], {}),
                         "old_value": ""
                     }
-                elif (type(dict_1[i]) is dict) is False\
-                        or (type(dict_2[i]) is dict) is False:
-                    if dict_1[i] != dict_2[i]:
-                        result[i] = {
+                elif (type(dict_1[key]) is dict) is False\
+                        or (type(dict_2[key]) is dict) is False:
+                    if dict_1[key] != dict_2[key]:
+                        result[key] = {
                             'type': Updated,
-                            'value': {i: {
+                            'value': {key: {
                                 'type': Added,
-                                'value': dict_2[i],
+                                'value': dict_2[key],
                                 'childs': "",
                                 "old_value": ""
                             }},
                             'childs': "",
-                            "old_value": dict_1[i]
+                            "old_value": dict_1[key]
                         }
                     else:
-                        result[i] = {
+                        result[key] = {
                             'type': No_changes,
-                            'value': dict_2[i],
+                            'value': dict_2[key],
                             'childs': "",
-                            "old_value": dict_1[i]
+                            "old_value": dict_1[key]
                         }
         return result
     return walk(in_1, in_2, {})
