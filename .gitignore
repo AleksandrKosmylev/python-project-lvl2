@@ -7,5 +7,3 @@ gendiff/scripts/functions.py
 .coverage
 coverage.xml
 .swp
-requirements.txt
-.pyproject.toml.swp
