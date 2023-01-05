@@ -1,3 +1,36 @@
+# Difference calculator
+### Description
+Python module shows difference between two *.json/*.yaml files.
+The difference can be returned in 3 variants, depending on the selected format.<br />
+Format options:
+- 'stylish' - return result as a "tree" of difference
+- 'plain' - returns result in the form of a string
+- 'json' - raw structure of difference file
+
+### Requirements
+
+- python3 version  3.9.x
+- poetry versiob >= 1.0.0
+
+### Installation and usage
+- clone repository to directory on your computer
+- enter "make install" to instal poetry 
+- enter "make package-install" to install the difference calculator module
+-  enter gendiff -f (format) (path to the first file) (path to the second file)"
+
+Example: <br />
+gendiff -f stylish tests/fixtures/nested/file1.json tests/fixtures/nested/file2.json
+
+### Links
+
+This project was built using these tools:
+
+| Tool                                                                        | Description                                             |
+|-----------------------------------------------------------------------------|---------------------------------------------------------|
+| [poetry](https://poetry.eustace.io/)                                        | "Python dependency management and packaging made easy"  |
+| [flake8](https://flake8.pycqa.org/en/latest/)                               | "Python linter"
+
+
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/AleksandrKosmylev/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/AleksandrKosmylev/python-project-lvl2/actions)
 [![Github Actions Status](https://github.com/AleksandrKosmylev/python-project-lvl2/workflows/my_linter/badge.svg)](https://github.com/AleksandrKosmylev/python-project-lvl2/actions)
