@@ -15,6 +15,6 @@ def parse_args():
     parser.add_argument('filepath1', type=str, help=argparse.SUPPRESS)
     parser.add_argument('filepath2', type=str, help=argparse.SUPPRESS)
     args = parser.parse_args()
-    a = args.filepath1
-    b = args.filepath2
-    print(generate_diff(a, b, args.format))
+    file_path1 = args.filepath1
+    file_path2 = args.filepath2
+    print(generate_diff(file_path1, file_path2, args.format))
