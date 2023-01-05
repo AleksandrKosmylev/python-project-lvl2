@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-from gendiff.scripts.parser import print_result
+from gendiff.scripts.parser import parse_args
 
 
 def main():
-    print_result()
+    parse_args()
 
 
 if __name__ == '__main__':
