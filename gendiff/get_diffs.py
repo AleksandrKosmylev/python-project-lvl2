@@ -1,5 +1,5 @@
 from gendiff.get_dicts_diff import get_dicts_diff, get_dict_from_file
-from gendiff.formatters import stringify, get_plain_diff
+from gendiff.formatter_stringify import stringify, get_plain_diff
 import json
 
 
@@ -15,4 +15,5 @@ def generate_diff(path_1, path_2, formatter='stylish'):
         output_json = json.dumps(result)
         return output_json
     else:
-        raise Exception('You\'ve chosen wrong format. Try \'stylish\', \'plain\', \'json\'')
+        raise Exception('You\'ve chosen wrong format. '
+                        'Try \'stylish\', \'plain\', \'json\'')
