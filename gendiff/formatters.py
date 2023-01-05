@@ -1,4 +1,3 @@
-from gendiff.get_dicts_diff import sign
 # flake8: noqa: C901
 
 Removed = 'was removed'
@@ -8,6 +7,21 @@ Both_dict = 'both_dict'
 No_changes = 'no changes'
 Status_list = [Removed, Added, Updated, Both_dict, No_changes]
 Keys_of_tree = ['type', 'value', 'childs', 'old_value']
+
+
+def sign(mark):
+    if mark == Added:
+        return '+ '
+    elif mark == Removed:
+        return '- '
+    elif mark == No_changes:
+        return '  '
+    elif mark == Updated:
+        return '- '
+    elif mark == Both_dict:
+        return '  '
+    else:
+        return '  '
 
 
 def stringify(y, spaces='  '):

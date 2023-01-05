@@ -22,21 +22,6 @@ Both_dict = 'both_dict'
 No_changes = 'no changes'
 
 
-def sign(mark):
-    if mark == Added:
-        return '+ '
-    elif mark == Removed:
-        return '- '
-    elif mark == No_changes:
-        return '  '
-    elif mark == Updated:
-        return '- '
-    elif mark == Both_dict:
-        return '  '
-    else:
-        return '  '
-
-
 def get_dicts_diff(data_1, data_2):
     def walk(dict_1, dict_2, result):
         keys1 = set(dict_1.keys())
