@@ -17,11 +17,11 @@ def generate_diff(path_1, path_2, formatter='stylish'):
         output_json = json.dumps(result)
         return output_json
     else:
-        return stringify(result)
+        raise Exception('You\'ve chosen wrong format. '
+                        'Try \'stylish\', \'plain\', \'json\'')
 
 
 """
     else:
-        raise Exception('You\'ve chosen wrong format. '
-                        'Try \'stylish\', \'plain\', \'json\'')
+        return stringify(result)
 """
