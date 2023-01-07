@@ -1,11 +1,5 @@
+from gendiff.utils.constants import Removed, Added, Updated, Both_dict, No_changes
 # flake8: noqa: C901
-
-
-Removed = 'was removed'
-Added = 'was added'
-Updated = 'was updated'
-Both_dict = 'both_dict'
-No_changes = 'no changes'
 
 
 def get_dicts_diff(data_1, data_2):
