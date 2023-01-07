@@ -23,10 +23,7 @@ def stringify(y, spaces='  '):
         if type(package) is dict:
             if Keys_of_tree == list(package.keys()):
                 values_list = list(package.values())
-                dict_type = values_list[0]
-                dict_values = values_list[1]
-                dict_children = values_list[2]
-                dict_old = values_list[3]
+                dict_type, dict_values, dict_children, dict_old = values_list
                 if dict_type == Both_dict:
                     if type(dict_children) is dict:
                         x.append("{")
