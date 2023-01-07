@@ -1,6 +1,6 @@
 from gendiff.get_dicts_diff import get_dicts_diff
-from gendiff.formatter_stringify import stringify
-from gendiff.formatter_plain import get_plain_diff
+from gendiff.formatters.formatter_stringify import stringify
+from gendiff.formatters.formatter_plain import get_plain_diff
 from gendiff.utils.data_read import get_dict_from_file
 import json
 
