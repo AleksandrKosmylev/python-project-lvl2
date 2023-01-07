@@ -21,18 +21,6 @@ path_to_file_1_1yaml = "tests/fixtures/nested/file1.yaml"
 path_to_file_2_1yaml = "tests/fixtures/nested/file2.yaml"
 path_stringify_json = "tests/fixtures/nested/test_stringify.json"
 path_plain_json = "tests/fixtures/nested/test_plain.json"
-"""
-path_to_file_1_json = "fixtures/flat/file1.json"
-path_to_file_2_json = "fixtures/flat/file2.json"
-path_stringify_flat_json = "fixtures/flat/test_stringify.json"
-
-path_to_file_1_1json = "fixtures/nested/file1.json"
-path_to_file_2_1json = "fixtures/nested/file2.json"
-path_to_file_1_1yaml = "fixtures/nested/file1.yaml"
-path_to_file_2_1yaml = "fixtures/nested/file2.yaml"
-path_stringify_json = "fixtures/nested/test_stringify.json"
-path_plain_json = "fixtures/nested/test_plain.json"
-"""
 
 
 def test_get_dict_from_file():
