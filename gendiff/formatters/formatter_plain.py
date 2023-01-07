@@ -4,10 +4,7 @@ from gendiff.utils.constants import Removed, Added, Updated, Both_dict
 def get_plain_diff(x):
     def walk(value, acc, list_acc):
         for key_of_dict in value.keys():
-            status_value = list(value[key_of_dict].values())[0]
-            list_childs = list(value[key_of_dict].values())[2]
-            list_values = list(value[key_of_dict].values())[1]
-            list_old_values = list(value[key_of_dict].values())[3]
+            status_value, list_values, list_childs, list_old_values = list(value[key_of_dict].values())
             if status_value == Both_dict:
                 acc.append(str(key_of_dict) + ".")
                 walk(list_childs, acc, list_acc)
