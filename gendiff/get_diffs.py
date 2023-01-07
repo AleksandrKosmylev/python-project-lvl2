@@ -16,9 +16,10 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     elif formatter == 'json':
         output_json = json.dumps(result)
         return output_json
-    elif formatter not in ['stylish', 'plain', 'json']:
-        raise Exception('You\'ve chosen wrong format. '
-                        'Try \'stylish\', \'plain\', \'json\'')
+    elif formatter:
+        if formatter not in ['stylish', 'plain', 'json']:
+            raise Exception('You\'ve chosen wrong format. '
+                            'Try \'stylish\', \'plain\', \'json\'')
 
 
 """
