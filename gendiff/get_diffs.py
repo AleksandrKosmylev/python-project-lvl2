@@ -21,5 +21,5 @@ def generate_diff(path_1, path_2, formatter):
         raise Exception('You\'ve chosen wrong format. '
                         'Try \'stylish\', \'plain\', \'json\'')
     else:
-        print('stylish coming')
+        print('no defaults given')
         return stringify(result)
