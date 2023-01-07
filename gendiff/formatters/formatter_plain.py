@@ -1,4 +1,5 @@
 from gendiff.utils.constants import Removed, Added, Updated, Both_dict
+from gendiff.utils.converter import convert
 # flake8: noqa: C901
 
 def get_plain_diff(x):
@@ -38,9 +39,6 @@ def get_plain_diff(x):
                     "Property ", repr(''.join(acc)), " ",
                     status_value, "\n"])
                 acc = acc[:-1]
-        for index, piece in enumerate(list_acc):
-            check_dict = {'True': "true", 'False': "false", 'None': "null"}
-            if piece in list(check_dict.keys()):
-                list_acc[index] = check_dict[piece]
+        convert(list_acc)
         return "".join(list_acc)[:-1]
     return walk(x, [], [])

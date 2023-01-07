@@ -1,4 +1,5 @@
 from gendiff.utils.constants import Removed, Added, Updated, Both_dict, No_changes, Keys_of_tree
+from gendiff.utils.converter import convert
 # flake8: noqa: C901
 
 
@@ -83,10 +84,7 @@ def stringify(y, spaces='  '):
         else:
             acc -= 1
             x.extend([package])
-        for index, piece in enumerate(x):
-            check_dict = {"True": "true", "False": "false", "None": "null"}
-            if str(piece) in list(check_dict.keys()):
-                x[index] = check_dict[str(piece)]
+        convert(x)
         z = [str(i) for i in x]
         s = "".join(z)
         return s + "\n}"
