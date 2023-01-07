@@ -1,4 +1,4 @@
-from gendiff.constants import Removed, Added, Updated, Both_dict, No_changes, Keys_of_tree
+from gendiff.utils.constants import Removed, Added, Updated, Both_dict, No_changes, Keys_of_tree
 # flake8: noqa: C901
 
 
