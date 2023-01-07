@@ -7,7 +7,7 @@ def parse_args():
         description='Compares two configuration files and shows a difference.',
         add_help=False)
     parser.add_argument("-V", '--version', action='version', version='1.0')
-    parser.add_argument("-f", '--format', metavar='',
+    parser.add_argument("-f", '--format', metavar='', default='stylish',
                         help='output format (default: "stylish")')
     parser.add_argument('-h', '--help', action='help',
                         default=argparse.SUPPRESS,
