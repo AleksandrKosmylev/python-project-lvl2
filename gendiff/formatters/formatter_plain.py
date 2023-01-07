@@ -2,7 +2,7 @@ from gendiff.utils.constants import Removed, Added, Updated, Both_dict
 from gendiff.utils.converter import convert
 # flake8: noqa: C901
 
-def get_plain_diff(x):
+def get_plain_diff(raw_dict):
     def walk(value, acc, list_acc):
         for key_of_dict in value.keys():
             status_value, list_values, list_childs, list_old_values = list(value[key_of_dict].values())
@@ -41,4 +41,4 @@ def get_plain_diff(x):
                 acc = acc[:-1]
         convert(list_acc)
         return "".join(list_acc)[:-1]
-    return walk(x, [], [])
+    return walk(raw_dict, [], [])
