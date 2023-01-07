@@ -20,9 +20,5 @@ def generate_diff(path_1, path_2, formatter='stylish'):
         if formatter not in ['stylish', 'plain', 'json']:
             raise Exception('You\'ve chosen wrong format. '
                             'Try \'stylish\', \'plain\', \'json\'')
-
-
-"""
     else:
         return stringify(result)
-"""
