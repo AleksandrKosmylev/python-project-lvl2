@@ -1,5 +1,6 @@
 from gendiff.get_dicts_diff import get_dict_from_file, get_dicts_diff
-from gendiff.formatter_stringify import stringify, get_plain_diff
+from gendiff.formatter_stringify import stringify
+from gendiff.formatter_plain import get_plain_diff
 
 
 control_result = {

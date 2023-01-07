@@ -1,4 +1,4 @@
-from formatter_stringify import Removed, Added, Updated, Both_dict
+from gendiff.constants import Removed, Added, Updated, Both_dict
 # flake8: noqa: C901
 
 def get_plain_diff(x):
