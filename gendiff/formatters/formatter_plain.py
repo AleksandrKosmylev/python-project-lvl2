@@ -14,7 +14,7 @@ def get_plain_diff(raw_dict):
                 acc.append(str(key_of_dict))
                 list_acc.extend(["Property ", repr(''.join(acc)),
                                  " ", status_value, " with value: "])
-                if type(list_values) is not dict:
+                if not isinstance(list_values, dict):
                     list_acc.extend([repr(list_values), '\n'])
                 else:
                     list_acc.extend(["[complex value]", "\n"])
@@ -26,9 +26,9 @@ def get_plain_diff(raw_dict):
                 bank = []
                 for i in [list_old_values,
                           list(list_values.values())[0]["value"]]:
-                    if type(i) is dict:
+                    if isinstance(i, dict):
                         bank.append("[complex value]")
-                    if type(i) is not dict:
+                    else:
                         bank.append(repr(i))
                 list_acc.extend([bank[0], " to ",
                                  bank[1], '\n'])
