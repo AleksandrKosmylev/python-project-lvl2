@@ -10,7 +10,7 @@ def get_plain_diff(raw_dict):
                 acc.append(str(key_of_dict) + ".")
                 walk(list_childs, acc, list_acc)
                 acc = acc[:-2]
-            if status_value == Added:
+            elif status_value == Added:
                 acc.append(str(key_of_dict))
                 list_acc.extend(["Property ", repr(''.join(acc)),
                                  " ", status_value, " with value: "])
