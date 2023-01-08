@@ -22,7 +22,7 @@ def get_dicts_diff(data_1, data_2):
                     'childs': "",
                     "old_value": dict_1[key]
                 }
-            elif key in keys1 and key in keys2:
+            else:
                 if isinstance(dict_1[key], dict) \
                         and isinstance(dict_2[key], dict):
                     result[key] = {
@@ -31,8 +31,7 @@ def get_dicts_diff(data_1, data_2):
                         'childs': walk(dict_1[key], dict_2[key], {}),
                         "old_value": ""
                     }
-                elif not isinstance(dict_1[key], dict) \
-                        or not isinstance(dict_2[key], dict):
+                else:
                     if dict_1[key] != dict_2[key]:
                         result[key] = {
                             'type': Updated,
