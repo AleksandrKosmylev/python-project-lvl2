@@ -2,7 +2,7 @@ from gendiff.utils.constants import Removed, Added, Updated, Both_dict, No_chang
 # flake8: noqa: C901
 
 
-def dicts_diff(data_1, data_2):
+def get_dicts_diff(data_1, data_2):
     def walk(dict_1, dict_2, result):
         keys1 = set(dict_1.keys())
         keys2 = set(dict_2.keys())

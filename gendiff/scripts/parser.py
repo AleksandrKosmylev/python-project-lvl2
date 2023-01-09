@@ -1,5 +1,5 @@
 import argparse
-from gendiff.get_diffs import diff_generator
+from gendiff.get_diffs import generate_diff
 
 
 def parse_args():
@@ -17,4 +17,4 @@ def parse_args():
     args = parser.parse_args()
     file_path1 = args.filepath1
     file_path2 = args.filepath2
-    print(diff_generator(file_path1, file_path2, args.format))
+    print(generate_diff(file_path1, file_path2, args.format))
