@@ -1,8 +1,8 @@
 from gendiff.diff_generator import get_dicts_diff
 from gendiff.formatters.formatter_stringify import stringify
 from gendiff.formatters.formatter_plain import get_plain_diff
+from gendiff.formatters.formatter_json import get_json
 from gendiff.utils.data_read import get_dict_from_file
-import json
 
 
 def generate_result(path_1, path_2):
@@ -19,8 +19,7 @@ def generate_diff(path_1, path_2, formatter='stylish'):
     elif formatter == 'plain':
         return get_plain_diff(result)
     elif formatter == 'json':
-        output_json = json.dumps(result)
-        return output_json
+        return get_json(result)
     else:
         raise Exception('You\'ve chosen wrong format. '
                         'Try \'stylish\', \'plain\', \'json\'')
