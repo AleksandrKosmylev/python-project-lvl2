@@ -2,18 +2,21 @@ import json
 import yaml
 
 
-def get_file_extension(path_to_file):
-    if path_to_file.endswith(".json"):
-        f = json.load(open(path_to_file))
-    elif path_to_file.endswith(".yaml") or \
-            path_to_file.endswith(".yml"):
-        f = yaml.load(open(path_to_file), Loader=yaml.FullLoader)
+def get_extension(file):
+    return file.split('.')[1]
+
+
+def get_data_from_file(path_to_file):
+    if get_extension(path_to_file) == "json":
+        data = json.load(open(path_to_file))
+    elif get_extension(path_to_file) in ("yaml", "yml"):
+        data = yaml.load(open(path_to_file), Loader=yaml.FullLoader)
     else:
-        f = {}
-    return f
+        raise Exception("Wrong file format")
+    return data
 
 
-def get_dict_from_file(f):
-    file = get_file_extension(f)
+def get_dict_from_file(data):
+    file = get_data_from_file(data)
     result = dict(file.items())
     return result
