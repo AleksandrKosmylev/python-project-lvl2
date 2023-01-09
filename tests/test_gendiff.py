@@ -1,4 +1,4 @@
-from gendiff.get_dicts_diff import get_dicts_diff
+from gendiff.get_dicts_diff import dicts_diff
 from gendiff.formatters.formatter_stringify import stringify
 from gendiff.formatters.formatter_plain import get_plain_diff
 from gendiff.utils.data_read import get_dict_from_file
@@ -30,7 +30,7 @@ def test_get_dict_from_file():
 def test_stringify_flat_json():
     dict_1 = get_dict_from_file(path_to_file_1_json)
     dict_2 = get_dict_from_file(path_to_file_2_json)
-    y = get_dicts_diff(dict_1, dict_2)
+    y = dicts_diff(dict_1, dict_2)
     data_1 = str(stringify(y, spaces='  '))
     with open(path_stringify_flat_json, 'r') as file_1:
         data_2 = file_1.read()
@@ -40,7 +40,7 @@ def test_stringify_flat_json():
 def test_stringify_json():
     dict_1 = get_dict_from_file(path_to_file_1_1json)
     dict_2 = get_dict_from_file(path_to_file_2_1json)
-    y = get_dicts_diff(dict_1, dict_2)
+    y = dicts_diff(dict_1, dict_2)
     data_1 = str(stringify(y, spaces='  '))
     with open(path_stringify_json, 'r') as file_1:
         data_2 = file_1.read()
@@ -50,7 +50,7 @@ def test_stringify_json():
 def test_stringify_yaml():
     dict_1 = get_dict_from_file(path_to_file_1_1yaml)
     dict_2 = get_dict_from_file(path_to_file_2_1yaml)
-    y = get_dicts_diff(dict_1, dict_2)
+    y = dicts_diff(dict_1, dict_2)
     data_1 = str(stringify(y, spaces='  '))
     with open(path_stringify_json, 'r') as file_1:
         data_2 = file_1.read()
@@ -60,7 +60,7 @@ def test_stringify_yaml():
 def test_plain():
     dict_1 = get_dict_from_file(path_to_file_1_1yaml)
     dict_2 = get_dict_from_file(path_to_file_2_1yaml)
-    y = get_dicts_diff(dict_1, dict_2)
+    y = dicts_diff(dict_1, dict_2)
     data_1 = str(get_plain_diff(y))
     with open(path_plain_json, 'r') as file_1:
         data_2 = file_1.read()
