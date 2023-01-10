@@ -5,21 +5,20 @@ from gendiff.formatters.formatter_json import get_json
 from gendiff.utils.data_read import get_dict_from_file
 
 
-def generate_result(path_1, path_2):
+def generate_diff(path_1, path_2, formatter):
     dict_1 = get_dict_from_file(path_1)
     dict_2 = get_dict_from_file(path_2)
-    result = get_dicts_diff(dict_1, dict_2)
-    return result
+    diff_data = get_dicts_diff(dict_1, dict_2)
+    return get_data_by_format(diff_data, formatter)
 
 
-def generate_diff(path_1, path_2, formatter='stylish'):
-    result = generate_result(path_1, path_2)
+def get_data_by_format(data, formatter='stylish'):
     if formatter == 'stylish':
-        return stringify(result)
+        return stringify(data)
     elif formatter == 'plain':
-        return get_plain_diff(result)
+        return get_plain_diff(data)
     elif formatter == 'json':
-        return get_json(result)
+        return get_json(data)
     else:
         raise Exception('You\'ve chosen wrong format. '
                         'Try \'stylish\', \'plain\', \'json\'')
