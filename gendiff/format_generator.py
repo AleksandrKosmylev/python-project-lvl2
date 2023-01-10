@@ -5,7 +5,7 @@ from gendiff.formatters.formatter_json import get_json
 from gendiff.utils.data_read import get_dict_from_file
 
 
-def generate_diff(path_1, path_2, formatter):
+def generate_diff(path_1, path_2, formatter='stylish'):
     dict_1 = get_dict_from_file(path_1)
     dict_2 = get_dict_from_file(path_2)
     diff_data = get_dicts_diff(dict_1, dict_2)
